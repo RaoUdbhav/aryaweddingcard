@@ -32,8 +32,8 @@
   --string-red-dark:    #8B0000;
   --string-gold:        #F3E5AB;
 
-  /* Initiator Overlay Background — Royal Vintage Pink Backdrop */
-  --initiator-pink-bg:  radial-gradient(circle at 50% 30%, #3D1E28 0%, #1D0E13 85%);
+  /* Initiator Overlay Background — Royal Vintage Pink Backdrop (Matching Reference Photo) */
+  --initiator-pink-bg:  radial-gradient(circle at 50% 35%, #4A1A24 0%, #1F0D13 85%);
 }
 
 * {
@@ -144,7 +144,7 @@ html, body {
 
 
 /* ============================================================
-   INITIATOR OVERLAY — VINTAGE PINK THEME & BRAIDED RED-GOLD STRING
+   INITIATOR OVERLAY — VINTAGE ROSE ARCH & BRAIDED STRING
    ============================================================ */
 
 .initiator-overlay {
@@ -170,13 +170,13 @@ html, body {
 
 .royal-glow {
   position: absolute;
-  width: 450px;
-  height: 450px;
-  background: radial-gradient(circle, var(--pink-glow) 0%, transparent 70%);
-  top: 40%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(217, 136, 128, 0.35) 0%, transparent 70%);
+  top: 42%;
   left: 50%;
   transform: translate(-50%, -50%);
-  filter: blur(40px);
+  filter: blur(50px);
   pointer-events: none;
 }
 
@@ -269,49 +269,58 @@ html, body {
   100% { transform: scale(1.2); opacity: 1; }
 }
 
-/* BOTTOM PULL INSTRUCTION (Clean Mobile Positioning) */
+/* BOTTOM PULL INSTRUCTION (PERFECTLY CENTERED ACROSS MOBILE & DESKTOP) */
 .pull-instruction-bottom {
   position: absolute;
-  bottom: 25px;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  width: 100%;
   z-index: 92;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   pointer-events: none;
-  width: 90%;
+  padding: 0 10px;
   animation: bounceText 2s ease-in-out infinite;
 }
 
 .pull-instruction-bottom .pull-arrow {
-  font-size: 24px;
+  font-size: 22px;
   color: var(--gold-champagne);
   line-height: 1;
+  margin-bottom: 2px;
 }
 
 .instruction-title {
   font-family: 'Cinzel', serif;
-  font-size: 13px;
-  letter-spacing: 3px;
+  font-size: clamp(11px, 3.2vw, 13px);
+  letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--gold-light);
-  margin-top: 4px;
+  white-space: nowrap;
 }
 
 .couple-name-preview {
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 6px;
   font-family: 'Pinyon Script', cursive;
-  font-size: 24px;
+  font-size: clamp(20px, 4.5vw, 26px);
   color: var(--pink-blush-accent);
+  white-space: nowrap;
   margin-top: 2px;
+  width: 100%;
 }
 
 .couple-name-preview .weds-mini {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: 16px;
+  font-size: 15px;
   color: var(--gold-light);
 }
 
@@ -321,7 +330,7 @@ html, body {
 }
 
 
-/* 3D ROYAL GATE ARCHITECTURE */
+/* 3D SCALLOPED ROYAL ARCHITECTURE (Matching Reference Photo) */
 .gate-viewport {
   position: absolute;
   top: 46%;
@@ -341,7 +350,7 @@ html, body {
   border: 4px solid var(--gold-antique);
   border-radius: 260px 260px 0 0;
   box-shadow: 0 0 45px rgba(0, 0, 0, 0.7), inset 0 0 30px rgba(184, 151, 72, 0.2);
-  background: #180D12;
+  background: #23121A;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -349,7 +358,7 @@ html, body {
 
 .arch-header {
   height: 100px;
-  background: linear-gradient(180deg, rgba(217, 136, 128, 0.25) 0%, transparent 100%);
+  background: linear-gradient(180deg, rgba(217, 136, 128, 0.3) 0%, transparent 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -358,9 +367,9 @@ html, body {
   z-index: 5;
 }
 
-.royal-emblem {
+.lotus-motif {
   font-size: 26px;
-  color: var(--gold-light);
+  color: var(--pink-blush-accent);
 }
 
 .gate-subtitle {
@@ -381,7 +390,7 @@ html, body {
 .royal-door {
   width: 50%;
   height: 100%;
-  background: #24131A;
+  background: #2C1620;
   border: 1px solid var(--gold-dark);
   position: relative;
   transition: transform 1.6s cubic-bezier(0.77, 0, 0.175, 1);
@@ -419,7 +428,7 @@ html, body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle, rgba(217, 136, 128, 0.1) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(217, 136, 128, 0.12) 0%, transparent 70%);
 }
 
 .jaali-pattern {
@@ -538,9 +547,10 @@ html, body {
   margin-bottom: 25px;
 }
 
+/* INITIALS BADGE (FIXED: A & S IN SAME HORIZONTAL LINE) */
 .couple-badge {
-  width: 90px;
-  height: 90px;
+  width: 96px;
+  height: 96px;
   border-radius: 50%;
   border: 2px dashed var(--gold-antique);
   display: flex;
@@ -552,9 +562,28 @@ html, body {
 }
 
 .couple-initials {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   font-family: 'Pinyon Script', cursive;
+  white-space: nowrap;
+}
+
+.couple-initials .init-a,
+.couple-initials .init-s {
   font-size: 38px;
   color: var(--text-charcoal);
+  line-height: 1;
+}
+
+.couple-initials .init-amp {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 22px;
+  color: var(--pink-blush-dark);
+  line-height: 1;
 }
 
 .invitation-sub {
