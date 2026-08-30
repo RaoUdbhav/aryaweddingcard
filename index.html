@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#121815">
+  <title>Arya & Sidhanshi — Wedding Invitation</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Pinyon+Script&family=Cinzel:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- =========================================================
+       AUDIO & CONTROLS
+       ========================================================= -->
+  <button id="musicToggle" class="music-btn" aria-label="Toggle Background Music">
+    <span class="music-icon">🎵</span>
+    <span class="music-waves">
+      <span></span><span></span><span></span>
+    </span>
+  </button>
+
+  <!-- =========================================================
+       CANVAS LAYERS FOR SPARKLES & FLYING PIGEONS
+       ========================================================= -->
+  <canvas id="sparkleCanvas" class="overlay-canvas"></canvas>
+  <canvas id="pigeonCanvas" class="overlay-canvas"></canvas>
+  <div class="petal-layer" id="petalLayer" aria-hidden="true"></div>
+
+  <!-- =========================================================
+       INITIATOR OVERLAY — PINK PULL STRING & DARK ROYAL BACKDROP
+       ========================================================= -->
+  <div id="initiatorOverlay" class="initiator-overlay">
+    
+    <!-- Ambient Royal Glow -->
+    <div class="royal-glow"></div>
+    <div class="stars-bg"></div>
+
+    <!-- PULL STRING CONTAINER -->
+    <div class="string-wrapper" id="stringWrapper">
+      <svg class="string-svg" viewBox="0 0 100 400" preserveAspectRatio="none">
+        <path id="stringPath" d="M 50 0 Q 50 150 50 300" stroke="#E8A598" stroke-width="4" fill="none" stroke-linecap="round" />
+      </svg>
+
+      <!-- Interactive Tassel Knob -->
+      <div id="pullTassel" class="pull-tassel" tabIndex="0" role="button" aria-label="Pull string to open invitation">
+        <div class="tassel-cap">✦</div>
+        <div class="tassel-skirt">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div class="tassel-glow"></div>
+      </div>
+      
+      <div class="pull-instruction">
+        <div class="pull-arrow">↓</div>
+        <p>Pull String to Reveal</p>
+        <span class="sub-text">Arya & Sidhanshi's Invitation</span>
+      </div>
+    </div>
+
+    <!-- 3D ROYAL GATE CONTAINER -->
+    <div class="gate-viewport" id="gateViewport">
+      <div class="gate-arch">
+        <div class="arch-header">
+          <span class="royal-emblem">꧁ 👑 ꧂</span>
+          <p class="gate-subtitle">ROYAL WEDDING INVITATION</p>
+        </div>
+
+        <div class="gate-doors-container" id="gateDoorsContainer">
+          <!-- LEFT DOOR -->
+          <div class="royal-door door-left" id="leftDoor">
+            <div class="door-panel">
+              <div class="jaali-pattern"></div>
+              <div class="door-brass-ring"></div>
+              <div class="door-text">
+                <span class="door-initial">A</span>
+                <p>ARYA</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT DOOR -->
+          <div class="royal-door door-right" id="rightDoor">
+            <div class="door-panel">
+              <div class="jaali-pattern"></div>
+              <div class="door-brass-ring"></div>
+              <div class="door-text">
+                <span class="door-initial">S</span>
+                <p>SIDHANSHI</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="gate-threshold">
+          <span>❖</span> <span>WELCOME</span> <span>❖</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- =========================================================
+       MAIN INVITATION PAGE — PISTACHIO GREEN LIGHT THEME
+       ========================================================= -->
+  <main id="invitationPage" class="invitation-page hidden-page">
+    
+    <div class="pistachio-frame">
+      <div class="corner-ornament top-left">❀</div>
+      <div class="corner-ornament top-right">❀</div>
+      <div class="corner-ornament bottom-left">❀</div>
+      <div class="corner-ornament bottom-right">❀</div>
+
+      <!-- HERO SECTION -->
+      <section class="hero-section">
+        <div class="header-flourish">❁ ✿ ❁</div>
+        <p class="invitation-eyebrow">WITH THE BLESSINGS OF OUR FAMILIES</p>
+        
+        <div class="couple-badge">
+          <div class="couple-initials">A & S</div>
+        </div>
+
+        <p class="invitation-sub">WE CORDIALLY REQUEST THE HONOUR OF YOUR PRESENCE AT THE WEDDING OF</p>
+        
+        <h1 class="couple-names">
+          <span class="groom-name">Arya</span>
+          <span class="ampersand">&</span>
+          <span class="bride-name">Sidhanshi</span>
+        </h1>
+
+        <p class="wedding-tagline">“Two hearts intertwined in love, embarking on a lifelong journey together.”</p>
+        
+        <div class="divider-line">
+          <span>❧</span> ✦ <span>☙</span>
+        </div>
+      </section>
+
+      <!-- SCRATCH CARD SECTION FOR WEDDING DATE -->
+      <section class="card-section scratch-section">
+        <div class="section-header">
+          <span class="section-icon">✨</span>
+          <h2>A Special Secret</h2>
+          <p class="section-sub">Scratch the card below to reveal our wedding date</p>
+        </div>
+
+        <div class="scratch-card-container">
+          <div class="scratch-card" id="scratchCard">
+            <div class="scratch-content">
+              <span class="date-label">SAVE THE DATE</span>
+              <strong class="wedding-date" id="weddingDateText">15 · JANUARY · 2027</strong>
+              <span class="venue-city">SONIPAT, HARYANA</span>
+            </div>
+            <canvas id="scratchCanvas" width="320" height="160"></canvas>
+          </div>
+          <p class="scratch-hint">👆 Rub your finger or mouse over the gold layer</p>
+        </div>
+      </section>
+
+      <!-- CELEBRATION EVENTS SECTION -->
+      <section class="card-section events-section">
+        <div class="section-header">
+          <span class="section-icon">🪷</span>
+          <h2>The Celebrations</h2>
+          <p class="section-sub">Join us for four unforgettable moments of joy</p>
+        </div>
+
+        <div class="events-grid">
+          <!-- EVENT 1: MEHENDI -->
+          <article class="event-card">
+            <div class="event-badge">✿</div>
+            <h3>MEHENDI</h3>
+            <p class="event-desc">A splash of henna and vibrant colors</p>
+            <div class="event-details">
+              <p>📅 <strong>13th January 2027</strong></p>
+              <p>⏰ <strong>4:00 PM Onwards</strong></p>
+            </div>
+          </article>
+
+          <!-- EVENT 2: SANGEET -->
+          <article class="event-card">
+            <div class="event-badge">🎵</div>
+            <h3>SANGEET</h3>
+            <p class="event-desc">An evening of music, dance & melody</p>
+            <div class="event-details">
+              <p>📅 <strong>14th January 2027</strong></p>
+              <p>⏰ <strong>7:00 PM Onwards</strong></p>
+            </div>
+          </article>
+
+          <!-- EVENT 3: BARAAT -->
+          <article class="event-card">
+            <div class="event-badge">🐴</div>
+            <h3>BARAAT</h3>
+            <p class="event-desc">The grand royal procession</p>
+            <div class="event-details">
+              <p>📅 <strong>15th January 2027</strong></p>
+              <p>⏰ <strong>5:00 PM Onwards</strong></p>
+            </div>
+          </article>
+
+          <!-- EVENT 4: WEDDING -->
+          <article class="event-card featured-event">
+            <div class="event-badge">👑</div>
+            <h3>ROYAL WEDDING</h3>
+            <p class="event-desc">The sacred Pheras & union of souls</p>
+            <div class="event-details">
+              <p>📅 <strong>15th January 2027</strong></p>
+              <p>⏰ <strong>8:00 PM Onwards</strong></p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- VENUE & LOCATION SECTION -->
+      <section class="card-section venue-section">
+        <div class="section-header">
+          <span class="section-icon">📍</span>
+          <h2>The Destination</h2>
+          <p class="section-sub">Where our forever begins</p>
+        </div>
+
+        <div class="venue-box">
+          <div class="venue-info">
+            <h3 class="venue-name">Shree Jee Vilas</h3>
+            <p class="venue-address">Kurar Road, Sonipat, Haryana — 131039</p>
+            <p class="venue-note">Join us in celebrating amidst the elegance and splendor of Sonipat.</p>
+            
+            <a href="https://maps.app.goo.gl/QTLVJYt5qhXf88mW8" target="_blank" rel="noopener noreferrer" class="btn-location">
+              <span>📍 GET DIRECTIONS ON MAPS</span> ↗
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- CLOSING & BLESSINGS -->
+      <section class="card-section closing-section">
+        <div class="quote-container">
+          <span class="quote-mark">“</span>
+          <p class="blessing-quote">
+            Your love, presence, and blessings are the greatest gifts we could ever ask for.
+          </p>
+        </div>
+
+        <div class="closing-signature">
+          <p>With Warm Regards & Love,</p>
+          <h4>Gupta & Extended Families</h4>
+          <div class="bottom-flourish">❀ ✿ ❀</div>
+        </div>
+      </section>
+
+    </div>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

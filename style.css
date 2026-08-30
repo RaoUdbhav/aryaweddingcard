@@ -1,0 +1,845 @@
+/* ============================================================
+   WEDDING INVITATION — PISTACHIO GREEN & ROYAL ROSE THEME
+   ============================================================ */
+
+:root {
+  /* Pistachio Green Palette */
+  --bg-pistachio-light: #EBF2E8;
+  --bg-pistachio-main:  #E0ECE0;
+  --bg-pistachio-card:  #F4F8F3;
+  --bg-pistachio-dark:  #C7DAC7;
+
+  /* Complementary Pink Shade for String Puller & Accents */
+  --pink-pull-string:   #E8A598;
+  --pink-tassel-dark:   #D88C9A;
+  --pink-glow:          rgba(232, 165, 152, 0.45);
+  --pink-subtle:        #F6D6D0;
+
+  /* Text & Contrast Tones */
+  --text-emerald-dark:  #1C3B2B;
+  --text-sage:          #375A48;
+  --text-muted:         #5A7365;
+
+  /* Metallic & Highlights */
+  --gold-champagne:     #D4AF37;
+  --gold-light:         #F3E5AB;
+  --gold-dark:          #A6801C;
+  --gold-shadow:        rgba(212, 175, 55, 0.3);
+
+  /* Dark Royal Gate Backdrop */
+  --gate-dark-bg:       #0F1512;
+  --gate-wood-dark:     #18231E;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  background-color: var(--bg-pistachio-main);
+  color: var(--text-emerald-dark);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Base Canvas Overlays */
+.overlay-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 99;
+}
+
+#pigeonCanvas {
+  z-index: 100;
+}
+
+.petal-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 15;
+  overflow: hidden;
+}
+
+.petal {
+  position: absolute;
+  background: radial-gradient(circle, var(--pink-pull-string) 0%, var(--pink-tassel-dark) 80%);
+  border-radius: 50% 0 50% 50%;
+  opacity: 0.7;
+  animation: fallPetal linear infinite;
+}
+
+@keyframes fallPetal {
+  0% {
+    transform: translateY(-10vh) rotate(0deg) scale(0.8);
+    opacity: 0;
+  }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.8; }
+  100% {
+    transform: translateY(105vh) rotate(720deg) scale(1.1);
+    opacity: 0;
+  }
+}
+
+/* Floating Music Control Button */
+.music-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 120;
+  background: rgba(244, 248, 243, 0.85);
+  border: 1px solid var(--gold-champagne);
+  border-radius: 50px;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8px);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.music-btn:hover {
+  transform: scale(1.05);
+}
+
+.music-waves {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 14px;
+}
+
+.music-waves span {
+  width: 3px;
+  background-color: var(--pink-tassel-dark);
+  border-radius: 2px;
+  height: 100%;
+  animation: wave 1.2s ease-in-out infinite alternate;
+}
+
+.music-waves span:nth-child(2) { animation-delay: 0.3s; }
+.music-waves span:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes wave {
+  0% { height: 3px; }
+  100% { height: 14px; }
+}
+
+
+/* ============================================================
+   INITIATOR OVERLAY — PINK PULL STRING & ROYAL 3D GATE
+   ============================================================ */
+
+.initiator-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: radial-gradient(circle at 50% 30%, #1A2620 0%, var(--gate-dark-bg) 80%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.2s;
+  overflow: hidden;
+}
+
+.initiator-overlay.opened {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.royal-glow {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, var(--gold-shadow) 0%, transparent 70%);
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+/* PINK PULL STRING */
+.string-wrapper {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 95;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  touch-action: none;
+  cursor: grab;
+}
+
+.string-wrapper:active {
+  cursor: grabbing;
+}
+
+.string-svg {
+  width: 20px;
+  height: 260px;
+  overflow: visible;
+}
+
+.pull-tassel {
+  position: relative;
+  width: 50px;
+  height: 70px;
+  margin-top: -10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  touch-action: none;
+  transition: transform 0.1s ease-out;
+}
+
+.tassel-cap {
+  width: 34px;
+  height: 24px;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold-champagne), var(--gold-dark));
+  border-radius: 12px 12px 4px 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-emerald-dark);
+  font-size: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.tassel-skirt {
+  width: 40px;
+  height: 46px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2px;
+  margin-top: -2px;
+}
+
+.tassel-skirt span {
+  width: 6px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--pink-pull-string), var(--pink-tassel-dark));
+  border-radius: 0 0 3px 3px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.tassel-glow {
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--pink-glow) 0%, transparent 70%);
+  animation: pulseGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes pulseGlow {
+  0% { transform: scale(0.9); opacity: 0.5; }
+  100% { transform: scale(1.2); opacity: 1; }
+}
+
+.pull-instruction {
+  margin-top: 15px;
+  text-align: center;
+  color: var(--gold-light);
+  pointer-events: none;
+  animation: bounceText 2s ease-in-out infinite;
+}
+
+.pull-instruction .pull-arrow {
+  font-size: 22px;
+  color: var(--pink-pull-string);
+}
+
+.pull-instruction p {
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.pull-instruction .sub-text {
+  font-family: 'Pinyon Script', cursive;
+  font-size: 20px;
+  color: var(--pink-pull-string);
+}
+
+@keyframes bounceText {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+
+/* 3D ROYAL GATE ARCHITECTURE */
+.gate-viewport {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  width: clamp(300px, 80vw, 520px);
+  height: clamp(400px, 65vh, 620px);
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  transition: transform 1.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.gate-arch {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 4px solid var(--gold-champagne);
+  border-radius: 260px 260px 0 0;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.8), inset 0 0 30px rgba(212, 175, 55, 0.2);
+  background: var(--gate-wood-dark);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.arch-header {
+  height: 120px;
+  background: linear-gradient(180deg, rgba(212, 175, 55, 0.2) 0%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 2px solid var(--gold-champagne);
+  z-index: 5;
+}
+
+.royal-emblem {
+  font-size: 28px;
+  color: var(--gold-light);
+}
+
+.gate-subtitle {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: var(--gold-light);
+  margin-top: 4px;
+}
+
+.gate-doors-container {
+  flex: 1;
+  display: flex;
+  position: relative;
+  perspective: 1000px;
+}
+
+.royal-door {
+  width: 50%;
+  height: 100%;
+  background: #141F1A;
+  border: 1px solid var(--gold-dark);
+  position: relative;
+  transition: transform 1.6s cubic-bezier(0.77, 0, 0.175, 1);
+  transform-style: preserve-3d;
+}
+
+.door-left {
+  transform-origin: left center;
+  border-right: 2px solid var(--gold-champagne);
+}
+
+.door-right {
+  transform-origin: right center;
+  border-left: 2px solid var(--gold-champagne);
+}
+
+/* Door open animation state */
+.initiator-overlay.opened .door-left {
+  transform: rotateY(-110deg);
+}
+
+.initiator-overlay.opened .door-right {
+  transform: rotateY(110deg);
+}
+
+.initiator-overlay.opened .gate-viewport {
+  transform: translate(-50%, -40%) scale(2.8);
+}
+
+.door-panel {
+  inset: 12px;
+  position: absolute;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+}
+
+.jaali-pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.15;
+  background-image: repeating-linear-gradient(45deg, var(--gold-champagne) 0, var(--gold-champagne) 1px, transparent 0, transparent 50%);
+  background-size: 16px 16px;
+}
+
+.door-brass-ring {
+  width: 44px;
+  height: 44px;
+  border: 3px solid var(--gold-champagne);
+  border-radius: 50%;
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px var(--gold-shadow);
+}
+
+.door-text {
+  text-align: center;
+  color: var(--gold-light);
+}
+
+.door-initial {
+  font-family: 'Pinyon Script', cursive;
+  font-size: 54px;
+  line-height: 1;
+}
+
+.door-text p {
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  letter-spacing: 4px;
+  margin-top: 6px;
+}
+
+.gate-threshold {
+  height: 40px;
+  background: rgba(212, 175, 55, 0.15);
+  border-top: 1px solid var(--gold-champagne);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  color: var(--gold-light);
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+}
+
+
+/* ============================================================
+   MAIN INVITATION PAGE — PISTACHIO GREEN LIGHT THEME
+   ============================================================ */
+
+.invitation-page {
+  position: relative;
+  min-height: 100vh;
+  padding: 40px 15px 80px 15px;
+  display: flex;
+  justify-content: center;
+  transition: opacity 1s ease-in;
+}
+
+.hidden-page {
+  display: none;
+  opacity: 0;
+}
+
+.pistachio-frame {
+  position: relative;
+  width: 100%;
+  max-width: 850px;
+  background-color: var(--bg-pistachio-card);
+  border: 2px solid var(--gold-champagne);
+  border-radius: 16px;
+  box-shadow: 0 15px 40px rgba(28, 59, 43, 0.12), inset 0 0 80px rgba(224, 236, 224, 0.5);
+  padding: 50px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+/* Corner Ornaments */
+.corner-ornament {
+  position: absolute;
+  font-size: 28px;
+  color: var(--gold-champagne);
+}
+
+.top-left { top: 12px; left: 15px; }
+.top-right { top: 12px; right: 15px; }
+.bottom-left { bottom: 12px; left: 15px; }
+.bottom-right { bottom: 12px; right: 15px; }
+
+/* HERO SECTION */
+.hero-section {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header-flourish {
+  font-size: 22px;
+  color: var(--gold-champagne);
+  margin-bottom: 10px;
+}
+
+.invitation-eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 4px;
+  color: var(--text-sage);
+  margin-bottom: 25px;
+}
+
+.couple-badge {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 2px dashed var(--gold-champagne);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 25px;
+  background: var(--bg-pistachio-light);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.couple-initials {
+  font-family: 'Pinyon Script', cursive;
+  font-size: 38px;
+  color: var(--text-emerald-dark);
+}
+
+.invitation-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  max-width: 500px;
+  margin-bottom: 20px;
+}
+
+.couple-names {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin: 10px 0 20px 0;
+}
+
+.groom-name, .bride-name {
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(52px, 10vw, 84px);
+  color: var(--text-emerald-dark);
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+}
+
+.ampersand {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(32px, 6vw, 48px);
+  color: var(--pink-tassel-dark);
+}
+
+.wedding-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 20px;
+  color: var(--text-sage);
+  max-width: 520px;
+}
+
+.divider-line {
+  margin-top: 30px;
+  color: var(--gold-champagne);
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+/* CARD SECTIONS GENERAL */
+.card-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.section-header {
+  margin-bottom: 30px;
+}
+
+.section-icon {
+  font-size: 30px;
+}
+
+.section-header h2 {
+  font-family: 'Cinzel', serif;
+  font-size: 26px;
+  letter-spacing: 3px;
+  color: var(--text-emerald-dark);
+  margin-top: 5px;
+}
+
+.section-sub {
+  font-size: 16px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+
+/* SCRATCH CARD SECTION */
+.scratch-card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.scratch-card {
+  position: relative;
+  width: 320px;
+  height: 160px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(28, 59, 43, 0.15);
+  border: 2px solid var(--gold-champagne);
+  background: linear-gradient(135deg, #FFFDF7, var(--bg-pistachio-light));
+}
+
+.scratch-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  gap: 8px;
+}
+
+.date-label {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: var(--text-sage);
+}
+
+.wedding-date {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text-emerald-dark);
+  letter-spacing: 1px;
+}
+
+.venue-city {
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: var(--pink-tassel-dark);
+  font-weight: 600;
+}
+
+#scratchCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  touch-action: none;
+}
+
+.scratch-hint {
+  font-size: 14px;
+  color: var(--text-sage);
+}
+
+
+/* EVENTS GRID */
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+.event-card {
+  background: var(--bg-pistachio-light);
+  border: 1px solid var(--gold-champagne);
+  border-radius: 12px;
+  padding: 25px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-50px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+.featured-event {
+  background: linear-gradient(135deg, #FAF4E8 0%, var(--bg-pistachio-light) 100%);
+  border: 2px solid var(--gold-champagne);
+}
+
+.event-badge {
+  font-size: 28px;
+}
+
+.event-card h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
+  letter-spacing: 2px;
+  color: var(--text-emerald-dark);
+}
+
+.event-desc {
+  font-size: 14px;
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+.event-details {
+  margin-top: 10px;
+  font-size: 14px;
+  color: var(--text-sage);
+  line-height: 1.6;
+}
+
+
+/* VENUE SECTION */
+.venue-box {
+  width: 100%;
+  background: var(--bg-pistachio-light);
+  border: 1px solid var(--gold-champagne);
+  border-radius: 12px;
+  padding: 35px 25px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+}
+
+.venue-name {
+  font-family: 'Cinzel', serif;
+  font-size: 24px;
+  letter-spacing: 2px;
+  color: var(--text-emerald-dark);
+  margin-bottom: 8px;
+}
+
+.venue-address {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-sage);
+  margin-bottom: 12px;
+}
+
+.venue-note {
+  font-size: 15px;
+  font-style: italic;
+  color: var(--text-muted);
+  margin-bottom: 25px;
+}
+
+.btn-location {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, var(--gold-champagne), var(--gold-dark));
+  color: #FFFDF7;
+  text-decoration: none;
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  padding: 14px 28px;
+  border-radius: 30px;
+  box-shadow: 0 4px 15px var(--gold-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-location:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+}
+
+
+/* CLOSING SECTION */
+.quote-container {
+  max-width: 600px;
+  margin-bottom: 30px;
+}
+
+.quote-mark {
+  font-family: 'Pinyon Script', cursive;
+  font-size: 60px;
+  color: var(--pink-tassel-dark);
+  line-height: 0.5;
+}
+
+.blessing-quote {
+  font-size: 22px;
+  font-style: italic;
+  color: var(--text-sage);
+  line-height: 1.5;
+}
+
+.closing-signature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.closing-signature p {
+  font-size: 16px;
+  color: var(--text-muted);
+}
+
+.closing-signature h4 {
+  font-family: 'Pinyon Script', cursive;
+  font-size: 38px;
+  color: var(--text-emerald-dark);
+}
+
+.bottom-flourish {
+  color: var(--gold-champagne);
+  margin-top: 10px;
+}
+
+
+/* RESPONSIVE MEDIA QUERIES */
+@media (max-width: 600px) {
+  .pistachio-frame {
+    padding: 30px 18px;
+    gap: 45px;
+  }
+
+  .groom-name, .bride-name {
+    font-size: 48px;
+  }
+
+  .scratch-card {
+    width: 280px;
+    height: 140px;
+  }
+}
