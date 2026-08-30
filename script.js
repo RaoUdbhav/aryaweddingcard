@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // -----------------------------------------------------------------
-  // 2. SPARKLE PARTICLE SYSTEM
+  // 2. GOLDEN SPARKLE PARTICLE SYSTEM
   // -----------------------------------------------------------------
   const sparkles = [];
   function createSparkle(x, y) {
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
         vx: (Math.random() - 0.5) * 4,
         vy: (Math.random() - 0.5) * 4 - 2,
         size: Math.random() * 4 + 2,
-        color: Math.random() > 0.5 ? '#F3E5AB' : '#E8A598',
+        color: Math.random() > 0.4 ? '#F3E5AB' : '#D4AF37', // Golden sparkles
         life: 1,
         decay: Math.random() * 0.03 + 0.015
       });
@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // -----------------------------------------------------------------
-  // 4. PULL STRING ELASTIC & DRAG MECHANICS
+  // 4. GOLDEN PULL STRING ELASTIC & DRAG MECHANICS
   // -----------------------------------------------------------------
   const pullTassel = document.getElementById('pullTassel');
   const stringPath = document.getElementById('stringPath');
@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
     stringPath.setAttribute('d', `M 50 0 Q ${50 + bend} ${150 + pullDistance / 2} 50 ${300 + pullDistance}`);
     pullTassel.style.transform = `translateY(${pullDistance}px)`;
 
-    // Emit sparkles along the tassel position
+    // Emit golden sparkles along the tassel position
     const tasselRect = pullTassel.getBoundingClientRect();
     createSparkle(tasselRect.left + tasselRect.width / 2, tasselRect.top + tasselRect.height / 2);
   }
@@ -265,7 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // -----------------------------------------------------------------
-  // 6. FLOATING ROSE PETAL FALL EFFECT
+  // 6. FLOATING DUSTY BLUSH PETAL FALL EFFECT
   // -----------------------------------------------------------------
   function initPetalFall() {
     const petalLayer = document.getElementById('petalLayer');
@@ -276,7 +276,6 @@ document.addEventListener('DOMContentLoaded', () => {
       petal.style.width = `${Math.random() * 12 + 8}px`;
       petal.style.height = `${Math.random() * 16 + 10}px`;
       petal.style.animationDuration = `${Math.random() * 6 + 6}s`;
-      petal.style.animationDelay = `${Math.random() * 4}s`;
       petalLayer.appendChild(petal);
     }
   }
@@ -294,14 +293,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fill with Metallic Gold Scratch Layer
     const grad = ctx.createLinearGradient(0, 0, width, height);
-    grad.addColorStop(0, '#D4AF37');
+    grad.addColorStop(0, '#B89748');
     grad.addColorStop(0.5, '#F3E5AB');
-    grad.addColorStop(1, '#A6801C');
+    grad.addColorStop(1, '#8C6D23');
     ctx.fillStyle = grad;
     ctx.fillRect(0, 0, width, height);
 
     // Scratch Text Overlay
-    ctx.fillStyle = '#1C3B2B';
+    ctx.fillStyle = '#1B261D';
     ctx.font = 'bold 16px "Cinzel", serif';
     ctx.textAlign = 'center';
     ctx.fillText('✨ SCRATCH HERE ✨', width / 2, height / 2 + 6);
