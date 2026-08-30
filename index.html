@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#1F0D13">
-  <title>Arya & Sidhanshi — Wedding Invitation</title>
+  <title>Arya weds Siddhanshi — Wedding Invitation</title>
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,33 +33,33 @@
   <div class="petal-layer" id="petalLayer" aria-hidden="true"></div>
 
   <!-- =========================================================
-       INITIATOR OVERLAY — PINK BACKDROP THEME & GOLDEN PULL STRING
+       INITIATOR OVERLAY — PINK BACKDROP & BRAIDED RED-GOLD STRING
        ========================================================= -->
   <div id="initiatorOverlay" class="initiator-overlay">
     
     <!-- Ambient Pink & Gold Glow -->
     <div class="royal-glow"></div>
-    <div class="pink-ambient-particles"></div>
 
-    <!-- GOLDEN PULL STRING CONTAINER -->
+    <!-- BRAIDED RED & GOLDEN PULL STRING -->
     <div class="string-wrapper" id="stringWrapper">
       <svg class="string-svg" viewBox="0 0 100 400" preserveAspectRatio="none">
-        <path id="stringPath" d="M 50 0 Q 50 150 50 300" stroke="#D4AF37" stroke-width="4" fill="none" stroke-linecap="round" />
+        <!-- Red Base Strand -->
+        <path id="stringPathRed" d="M 50 0 Q 50 150 50 300" stroke="#B22222" stroke-width="5" fill="none" stroke-linecap="round" />
+        <!-- Intertwined Gold Strand -->
+        <path id="stringPathGold" d="M 50 0 Q 50 150 50 300" stroke="#F3E5AB" stroke-width="3" stroke-dasharray="8 6" fill="none" stroke-linecap="round" />
       </svg>
 
-      <!-- Golden Tassel Knob -->
+      <!-- Braided Red & Gold Tassel Knob -->
       <div id="pullTassel" class="pull-tassel" tabIndex="0" role="button" aria-label="Pull string to open invitation">
-        <div class="tassel-cap">✦</div>
+        <div class="tassel-cap">👑</div>
         <div class="tassel-skirt">
-          <span></span><span></span><span></span><span></span><span></span>
+          <span class="tassel-gold"></span>
+          <span class="tassel-red"></span>
+          <span class="tassel-gold"></span>
+          <span class="tassel-red"></span>
+          <span class="tassel-gold"></span>
         </div>
         <div class="tassel-glow"></div>
-      </div>
-      
-      <div class="pull-instruction">
-        <div class="pull-arrow">↓</div>
-        <p>Pull String to Reveal</p>
-        <span class="sub-text">Arya & Sidhanshi's Invitation</span>
       </div>
     </div>
 
@@ -67,8 +67,8 @@
     <div class="gate-viewport" id="gateViewport">
       <div class="gate-arch">
         <div class="arch-header">
-          <span class="royal-emblem">꧁ 👑 ꧂</span>
-          <p class="gate-subtitle">ROYAL WEDDING INVITATION</p>
+          <span class="royal-emblem">👑</span>
+          <p class="gate-subtitle">WEDDING INVITATION</p>
         </div>
 
         <div class="gate-doors-container" id="gateDoorsContainer">
@@ -91,7 +91,7 @@
               <div class="door-brass-ring"></div>
               <div class="door-text">
                 <span class="door-initial">S</span>
-                <p>SIDHANSHI</p>
+                <p>SIDDHANSHI</p>
               </div>
             </div>
           </div>
@@ -103,11 +103,22 @@
       </div>
     </div>
 
+    <!-- PULL INSTRUCTION (Positioned safely at bottom to prevent text overlap) -->
+    <div class="pull-instruction-bottom">
+      <div class="pull-arrow">↓</div>
+      <p class="instruction-title">PULL BRAIDED STRING TO REVEAL</p>
+      <div class="couple-name-preview">
+        <span>Arya</span>
+        <span class="weds-mini">weds</span>
+        <span>Siddhanshi</span>
+      </div>
+    </div>
+
   </div>
 
 
   <!-- =========================================================
-       MAIN INVITATION PAGE — VINTAGE OLIVE & DUSTY BLUSH THEME
+       MAIN INVITATION PAGE — MUTED PISTACHIO & VINTAGE DUSTY BLUSH
        ========================================================= -->
   <main id="invitationPage" class="invitation-page hidden-page">
     
@@ -128,10 +139,11 @@
 
         <p class="invitation-sub">WE CORDIALLY REQUEST THE HONOUR OF YOUR PRESENCE AT THE WEDDING OF</p>
         
+        <!-- 3-LINE COUPLE NAME FORMAT FOR MOBILE & DESKTOP -->
         <h1 class="couple-names">
           <span class="groom-name">Arya</span>
-          <span class="ampersand">&</span>
-          <span class="bride-name">Sidhanshi</span>
+          <span class="weds-text">weds</span>
+          <span class="bride-name">Siddhanshi</span>
         </h1>
 
         <p class="wedding-tagline">“Two hearts intertwined in love, embarking on a lifelong journey together.”</p>
@@ -141,24 +153,24 @@
         </div>
       </section>
 
-      <!-- SCRATCH CARD SECTION FOR WEDDING DATE -->
+      <!-- SCRATCH CARD SECTION (ORIGINAL HIGH-QUALITY TEXTURED SCRATCH CARD) -->
       <section class="card-section scratch-section">
         <div class="section-header">
           <span class="section-icon">✨</span>
-          <h2>A Special Secret</h2>
-          <p class="section-sub">Scratch the card below to reveal our wedding date</p>
+          <h2>A LITTLE SURPRISE</h2>
+          <p class="section-sub">Scratch the gold card below to reveal our wedding date</p>
         </div>
 
         <div class="scratch-card-container">
           <div class="scratch-card" id="scratchCard">
-            <div class="scratch-content">
-              <span class="date-label">SAVE THE DATE</span>
-              <strong class="wedding-date" id="weddingDateText">15 · JANUARY · 2027</strong>
+            <div class="scratch-answer">
+              <span class="date-label">OUR WEDDING DAY</span>
+              <strong id="weddingDate" class="wedding-date">15 · JANUARY · 2027</strong>
               <span class="venue-city">SONIPAT, HARYANA</span>
             </div>
-            <canvas id="scratchCanvas" width="320" height="160"></canvas>
+            <canvas id="scratchCanvas" aria-label="Scratch card to reveal wedding date"></canvas>
           </div>
-          <p class="scratch-hint">👆 Rub your finger or mouse over the gold layer</p>
+          <p class="scratch-hint">✨ Rub your finger or mouse over the gold layer ✨</p>
         </div>
       </section>
 
@@ -207,7 +219,7 @@
           <!-- EVENT 4: WEDDING -->
           <article class="event-card featured-event">
             <div class="event-badge">👑</div>
-            <h3>ROYAL WEDDING</h3>
+            <h3>WEDDING</h3>
             <p class="event-desc">The sacred Pheras & union of souls</p>
             <div class="event-details">
               <p>📅 <strong>15th January 2027</strong></p>

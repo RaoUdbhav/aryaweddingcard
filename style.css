@@ -27,9 +27,10 @@
   --gold-dark:          #8C6D23;
   --gold-shadow:        rgba(184, 151, 72, 0.35);
 
-  /* Golden String Colors */
-  --string-gold:        #D4AF37;
-  --string-gold-light:  #F3E5AB;
+  /* Red Braided Thread Tones */
+  --string-red:         #B22222;
+  --string-red-dark:    #8B0000;
+  --string-gold:        #F3E5AB;
 
   /* Initiator Overlay Background — Royal Vintage Pink Backdrop */
   --initiator-pink-bg:  radial-gradient(circle at 50% 30%, #3D1E28 0%, #1D0E13 85%);
@@ -143,7 +144,7 @@ html, body {
 
 
 /* ============================================================
-   INITIATOR OVERLAY — VINTAGE PINK THEME & GOLDEN PULL STRING
+   INITIATOR OVERLAY — VINTAGE PINK THEME & BRAIDED RED-GOLD STRING
    ============================================================ */
 
 .initiator-overlay {
@@ -154,7 +155,8 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 20px 10px 30px 10px;
   perspective: 1200px;
   transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.2s;
   overflow: hidden;
@@ -178,7 +180,7 @@ html, body {
   pointer-events: none;
 }
 
-/* GOLDEN PULL STRING */
+/* BRAIDED RED & GOLD PULL STRING */
 .string-wrapper {
   position: absolute;
   top: 0;
@@ -198,7 +200,7 @@ html, body {
 
 .string-svg {
   width: 20px;
-  height: 260px;
+  height: 250px;
   overflow: visible;
 }
 
@@ -217,7 +219,7 @@ html, body {
 }
 
 .tassel-cap {
-  width: 34px;
+  width: 36px;
   height: 24px;
   background: linear-gradient(135deg, var(--gold-light), var(--gold-champagne), var(--gold-dark));
   border-radius: 12px 12px 4px 4px;
@@ -225,12 +227,12 @@ html, body {
   align-items: center;
   justify-content: center;
   color: var(--text-charcoal);
-  font-size: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  font-size: 13px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
 .tassel-skirt {
-  width: 40px;
+  width: 42px;
   height: 46px;
   display: flex;
   justify-content: space-between;
@@ -238,13 +240,20 @@ html, body {
   margin-top: -2px;
 }
 
-/* Golden Tassel Fringe */
+/* Alternating Red and Gold Tassel Fringe */
 .tassel-skirt span {
   width: 6px;
   height: 100%;
-  background: linear-gradient(180deg, var(--gold-light), var(--gold-champagne), var(--gold-dark));
   border-radius: 0 0 3px 3px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.tassel-skirt .tassel-gold {
+  background: linear-gradient(180deg, var(--gold-light), var(--gold-champagne), var(--gold-dark));
+}
+
+.tassel-skirt .tassel-red {
+  background: linear-gradient(180deg, #E63946, var(--string-red), var(--string-red-dark));
 }
 
 .tassel-glow {
@@ -260,47 +269,66 @@ html, body {
   100% { transform: scale(1.2); opacity: 1; }
 }
 
-.pull-instruction {
-  margin-top: 15px;
+/* BOTTOM PULL INSTRUCTION (Clean Mobile Positioning) */
+.pull-instruction-bottom {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 92;
   text-align: center;
-  color: var(--gold-light);
   pointer-events: none;
+  width: 90%;
   animation: bounceText 2s ease-in-out infinite;
 }
 
-.pull-instruction .pull-arrow {
-  font-size: 22px;
+.pull-instruction-bottom .pull-arrow {
+  font-size: 24px;
   color: var(--gold-champagne);
+  line-height: 1;
 }
 
-.pull-instruction p {
+.instruction-title {
   font-family: 'Cinzel', serif;
-  font-size: 14px;
-  letter-spacing: 2px;
+  font-size: 13px;
+  letter-spacing: 3px;
   text-transform: uppercase;
-  color: #F8E5E1;
+  color: var(--gold-light);
+  margin-top: 4px;
 }
 
-.pull-instruction .sub-text {
+.couple-name-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   font-family: 'Pinyon Script', cursive;
-  font-size: 22px;
+  font-size: 24px;
   color: var(--pink-blush-accent);
+  margin-top: 2px;
+}
+
+.couple-name-preview .weds-mini {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 16px;
+  color: var(--gold-light);
 }
 
 @keyframes bounceText {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(8px); }
+  50% { transform: translateY(6px); }
 }
 
 
 /* 3D ROYAL GATE ARCHITECTURE */
 .gate-viewport {
   position: absolute;
-  top: 45%;
+  top: 46%;
   left: 50%;
-  transform: translate(-50%, -40%);
-  width: clamp(300px, 80vw, 520px);
-  height: clamp(400px, 65vh, 620px);
+  transform: translate(-50%, -46%);
+  width: clamp(290px, 82vw, 480px);
+  height: clamp(380px, 60vh, 560px);
   perspective: 1200px;
   transform-style: preserve-3d;
   transition: transform 1.8s cubic-bezier(0.25, 1, 0.5, 1);
@@ -320,7 +348,7 @@ html, body {
 }
 
 .arch-header {
-  height: 120px;
+  height: 100px;
   background: linear-gradient(180deg, rgba(217, 136, 128, 0.25) 0%, transparent 100%);
   display: flex;
   flex-direction: column;
@@ -331,14 +359,14 @@ html, body {
 }
 
 .royal-emblem {
-  font-size: 28px;
+  font-size: 26px;
   color: var(--gold-light);
 }
 
 .gate-subtitle {
   font-family: 'Cinzel', serif;
   font-size: 13px;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
   color: var(--gold-light);
   margin-top: 4px;
 }
@@ -380,7 +408,7 @@ html, body {
 }
 
 .initiator-overlay.opened .gate-viewport {
-  transform: translate(-50%, -40%) scale(2.8);
+  transform: translate(-50%, -46%) scale(2.8);
 }
 
 .door-panel {
@@ -403,11 +431,11 @@ html, body {
 }
 
 .door-brass-ring {
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   border: 3px solid var(--gold-antique);
   border-radius: 50%;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   box-shadow: 0 0 10px var(--gold-shadow);
 }
 
@@ -418,25 +446,25 @@ html, body {
 
 .door-initial {
   font-family: 'Pinyon Script', cursive;
-  font-size: 54px;
+  font-size: 48px;
   line-height: 1;
 }
 
 .door-text p {
   font-family: 'Cinzel', serif;
-  font-size: 14px;
-  letter-spacing: 4px;
-  margin-top: 6px;
+  font-size: 13px;
+  letter-spacing: 3px;
+  margin-top: 4px;
 }
 
 .gate-threshold {
-  height: 40px;
+  height: 38px;
   background: rgba(184, 151, 72, 0.15);
   border-top: 1px solid var(--gold-antique);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 15px;
+  gap: 12px;
   color: var(--gold-light);
   font-family: 'Cinzel', serif;
   font-size: 11px;
@@ -538,27 +566,40 @@ html, body {
   margin-bottom: 20px;
 }
 
+/* 3-LINE COUPLE NAME LAYOUT (Arya / weds / Siddhanshi) */
 .couple-names {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 15px;
-  margin: 10px 0 20px 0;
+  gap: 2px;
+  margin: 15px 0 25px 0;
+  text-align: center;
 }
 
-.groom-name, .bride-name {
+.groom-name {
   font-family: 'Pinyon Script', cursive;
   font-size: clamp(52px, 10vw, 84px);
   color: var(--text-charcoal);
+  line-height: 1;
   text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
 }
 
-.ampersand {
+.weds-text {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: clamp(32px, 6vw, 48px);
+  font-size: clamp(24px, 5vw, 36px);
   color: var(--pink-blush-dark);
+  letter-spacing: 3px;
+  margin: 4px 0;
+}
+
+.bride-name {
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(52px, 10vw, 84px);
+  color: var(--text-charcoal);
+  line-height: 1;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
 }
 
 .wedding-tagline {
@@ -588,7 +629,7 @@ html, body {
 }
 
 .section-header {
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 }
 
 .section-icon {
@@ -597,20 +638,20 @@ html, body {
 
 .section-header h2 {
   font-family: 'Cinzel', serif;
-  font-size: 26px;
+  font-size: 24px;
   letter-spacing: 3px;
   color: var(--text-charcoal);
   margin-top: 5px;
 }
 
 .section-sub {
-  font-size: 16px;
+  font-size: 15px;
   color: var(--text-muted);
   font-style: italic;
 }
 
 
-/* SCRATCH CARD SECTION */
+/* SCRATCH CARD SECTION (ORIGINAL TEXTURED SCRATCH CARD STYLING) */
 .scratch-card-container {
   display: flex;
   flex-direction: column;
@@ -629,7 +670,7 @@ html, body {
   background: linear-gradient(135deg, #FFFDF7, var(--bg-pistachio-light));
 }
 
-.scratch-content {
+.scratch-answer {
   position: absolute;
   inset: 0;
   display: flex;
@@ -833,7 +874,7 @@ html, body {
 }
 
 
-/* RESPONSIVE MEDIA QUERIES */
+/* RESPONSIVE MEDIA QUERIES (ANDROID & MOBILE OPTIMIZATIONS) */
 @media (max-width: 600px) {
   .pistachio-frame {
     padding: 30px 18px;
@@ -841,11 +882,20 @@ html, body {
   }
 
   .groom-name, .bride-name {
-    font-size: 48px;
+    font-size: 46px;
+  }
+
+  .weds-text {
+    font-size: 22px;
   }
 
   .scratch-card {
-    width: 280px;
-    height: 140px;
+    width: 290px;
+    height: 145px;
+  }
+
+  .gate-viewport {
+    width: 88vw;
+    height: 52vh;
   }
 }

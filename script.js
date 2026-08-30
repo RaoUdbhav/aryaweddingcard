@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // -----------------------------------------------------------------
-  // 2. GOLDEN SPARKLE PARTICLE SYSTEM
+  // 2. GOLDEN & RED SPARKLE PARTICLE SYSTEM
   // -----------------------------------------------------------------
   const sparkles = [];
   function createSparkle(x, y) {
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
         vx: (Math.random() - 0.5) * 4,
         vy: (Math.random() - 0.5) * 4 - 2,
         size: Math.random() * 4 + 2,
-        color: Math.random() > 0.4 ? '#F3E5AB' : '#D4AF37', // Golden sparkles
+        color: Math.random() > 0.3 ? '#F3E5AB' : '#E63946',
         life: 1,
         decay: Math.random() * 0.03 + 0.015
       });
@@ -163,10 +163,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // -----------------------------------------------------------------
-  // 4. GOLDEN PULL STRING ELASTIC & DRAG MECHANICS
+  // 4. BRAIDED RED & GOLD PULL STRING MECHANICS
   // -----------------------------------------------------------------
   const pullTassel = document.getElementById('pullTassel');
-  const stringPath = document.getElementById('stringPath');
+  const stringPathRed = document.getElementById('stringPathRed');
+  const stringPathGold = document.getElementById('stringPathGold');
   const initiatorOverlay = document.getElementById('initiatorOverlay');
   const invitationPage = document.getElementById('invitationPage');
 
@@ -179,10 +180,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function updateStringCurve(pullDistance) {
     const bend = pullDistance * 0.3;
-    stringPath.setAttribute('d', `M 50 0 Q ${50 + bend} ${150 + pullDistance / 2} 50 ${300 + pullDistance}`);
+    const pathD = `M 50 0 Q ${50 + bend} ${150 + pullDistance / 2} 50 ${250 + pullDistance}`;
+    if (stringPathRed) stringPathRed.setAttribute('d', pathD);
+    if (stringPathGold) stringPathGold.setAttribute('d', pathD);
+    
     pullTassel.style.transform = `translateY(${pullDistance}px)`;
 
-    // Emit golden sparkles along the tassel position
+    // Emit sparkles along the tassel position
     const tasselRect = pullTassel.getBoundingClientRect();
     createSparkle(tasselRect.left + tasselRect.width / 2, tasselRect.top + tasselRect.height / 2);
   }
@@ -259,7 +263,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       invitationPage.classList.remove('hidden-page');
       initPetalFall();
-      initScratchCard();
+      setupOriginalScratchCard();
     }, 1300);
   }
 
@@ -282,71 +286,101 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // -----------------------------------------------------------------
-  // 7. SCRATCH CARD CANVAS
+  // 7. ORIGINAL HIGH-QUALITY SCRATCH CARD FEATURE (FROM REFERENCE SITE)
   // -----------------------------------------------------------------
-  function initScratchCard() {
-    const scratchCanvas = document.getElementById('scratchCanvas');
-    if (!scratchCanvas) return;
-    const ctx = scratchCanvas.getContext('2d');
-    const width = scratchCanvas.width;
-    const height = scratchCanvas.height;
+  function setupOriginalScratchCard() {
+    const scratchCanvas = document.getElementById("scratchCanvas");
+    const scratchCard = document.getElementById("scratchCard");
+    const weddingDate = document.getElementById("weddingDate");
+    if (!scratchCanvas || !scratchCard) return;
 
-    // Fill with Metallic Gold Scratch Layer
-    const grad = ctx.createLinearGradient(0, 0, width, height);
-    grad.addColorStop(0, '#B89748');
-    grad.addColorStop(0.5, '#F3E5AB');
-    grad.addColorStop(1, '#8C6D23');
-    ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, width, height);
+    const rect = scratchCard.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
 
-    // Scratch Text Overlay
-    ctx.fillStyle = '#1B261D';
-    ctx.font = 'bold 16px "Cinzel", serif';
-    ctx.textAlign = 'center';
-    ctx.fillText('✨ SCRATCH HERE ✨', width / 2, height / 2 + 6);
+    scratchCanvas.width = Math.max(1, Math.floor(rect.width * dpr));
+    scratchCanvas.height = Math.max(1, Math.floor(rect.height * dpr));
+
+    const scratchCtx = scratchCanvas.getContext("2d");
+    if (!scratchCtx) return;
+
+    scratchCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const w = rect.width;
+    const h = rect.height;
+
+    // Rich Gold Coating Texture
+    const gradient = scratchCtx.createLinearGradient(0, 0, w, h);
+    gradient.addColorStop(0, "#8a5d12");
+    gradient.addColorStop(0.2, "#e1b949");
+    gradient.addColorStop(0.4, "#f7dc82");
+    gradient.addColorStop(0.6, "#b17a1b");
+    gradient.addColorStop(0.8, "#edca63");
+    gradient.addColorStop(1, "#8a5d12");
+
+    scratchCtx.globalCompositeOperation = "source-over";
+    scratchCtx.fillStyle = gradient;
+    scratchCtx.fillRect(0, 0, w, h);
+
+    // Metallic Speckle Noise Dots
+    for (let i = 0; i < 300; i++) {
+      scratchCtx.fillStyle = i % 2 ? "rgba(255,255,255,0.18)" : "rgba(60,35,5,0.14)";
+      const size = Math.random() * 2 + 0.5;
+      scratchCtx.fillRect(Math.random() * w, Math.random() * h, size, size);
+    }
+
+    // Elegant Instruction Text
+    scratchCtx.textAlign = "center";
+    scratchCtx.textBaseline = "middle";
+    scratchCtx.fillStyle = "#241806";
+    scratchCtx.font = "bold 18px Georgia, serif";
+    scratchCtx.fillText("SCRATCH TO REVEAL", w / 2, h / 2 - 10);
+
+    scratchCtx.font = "bold 12px Georgia, serif";
+    scratchCtx.fillText("✦ OUR WEDDING DATE ✦", w / 2, h / 2 + 18);
 
     let isScratching = false;
 
-    function scratch(x, y) {
-      ctx.globalCompositeOperation = 'destination-out';
-      ctx.beginPath();
-      ctx.arc(x, y, 22, 0, Math.PI * 2);
-      ctx.fill();
-    }
-
-    function getPos(e) {
-      const rect = scratchCanvas.getBoundingClientRect();
+    function getScratchPos(e) {
+      const bounds = scratchCanvas.getBoundingClientRect();
       const clientX = e.touches ? e.touches[0].clientX : e.clientX;
       const clientY = e.touches ? e.touches[0].clientY : e.clientY;
       return {
-        x: (clientX - rect.left) * (scratchCanvas.width / rect.width),
-        y: (clientY - rect.top) * (scratchCanvas.height / rect.height)
+        x: clientX - bounds.left,
+        y: clientY - bounds.top
       };
     }
 
-    function startScratch(e) {
+    function scratchAt(x, y) {
+      scratchCtx.save();
+      scratchCtx.globalCompositeOperation = "destination-out";
+      scratchCtx.beginPath();
+      scratchCtx.arc(x, y, 22, 0, Math.PI * 2);
+      scratchCtx.fill();
+      scratchCtx.restore();
+    }
+
+    function handleScratchStart(e) {
       isScratching = true;
-      const pos = getPos(e);
-      scratch(pos.x, pos.y);
+      const pos = getScratchPos(e);
+      scratchAt(pos.x, pos.y);
     }
 
-    function moveScratch(e) {
+    function handleScratchMove(e) {
       if (!isScratching) return;
-      const pos = getPos(e);
-      scratch(pos.x, pos.y);
+      const pos = getScratchPos(e);
+      scratchAt(pos.x, pos.y);
     }
 
-    function stopScratch() {
+    function handleScratchEnd() {
       isScratching = false;
     }
 
-    scratchCanvas.addEventListener('mousedown', startScratch);
-    scratchCanvas.addEventListener('mousemove', moveScratch);
-    window.addEventListener('mouseup', stopScratch);
+    scratchCanvas.addEventListener("mousedown", handleScratchStart);
+    scratchCanvas.addEventListener("mousemove", handleScratchMove);
+    window.addEventListener("mouseup", handleScratchEnd);
 
-    scratchCanvas.addEventListener('touchstart', startScratch, { passive: true });
-    scratchCanvas.addEventListener('touchmove', moveScratch, { passive: true });
-    window.addEventListener('touchend', stopScratch);
+    scratchCanvas.addEventListener("touchstart", handleScratchStart, { passive: true });
+    scratchCanvas.addEventListener("touchmove", handleScratchMove, { passive: true });
+    window.addEventListener("touchend", handleScratchEnd);
   }
 
 
