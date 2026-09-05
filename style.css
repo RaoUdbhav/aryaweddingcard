@@ -1,654 +1,36 @@
 /* ============================================================
-   WEDDING INVITATION — OPTION C: MUTED PISTACHIO & VINTAGE DUSTY BLUSH
+   ANDROID BORDERLESS & SHAADIPATH TEMPLATE09 CUSTOM OVERRIDES
    ============================================================ */
 
-:root {
-  /* Option C: Muted Pistachio Palette */
-  --bg-pistachio-light: #E2EBE0;
-  --bg-pistachio-main:  #D5E0D0;
-  --bg-pistachio-card:  #FAFDF9;
-  --bg-pistachio-dark:  #B5C6B0;
-
-  /* Accent: Vintage Dusty Blush Pink */
-  --pink-blush-accent:  #D98880;
-  --pink-blush-dark:    #C7756D;
-  --pink-glow:          rgba(217, 136, 128, 0.45);
-  --pink-subtle:        #F5DCD9;
-
-  /* Text & Contrast Tones */
-  --text-charcoal:      #1B261D;
-  --text-sage:          #2F4233;
-  --text-muted:         #526656;
-
-  /* Metallic & Highlights: Antique Bronze & Champagne Gold */
-  --gold-antique:       #B89748;
-  --gold-champagne:     #D4AF37;
-  --gold-light:         #F3E5AB;
-  --gold-dark:          #8C6D23;
-  --gold-shadow:        rgba(184, 151, 72, 0.35);
-
-  /* Red Braided Thread Tones */
-  --string-red:         #B22222;
-  --string-red-dark:    #8B0000;
-  --string-gold:        #F3E5AB;
-
-  /* Initiator Overlay Background — Royal Vintage Pink Backdrop */
-  --initiator-pink-bg:  radial-gradient(circle at 50% 35%, #4A1A24 0%, #1F0D13 85%);
-}
-
-* {
-  box-sizing: border-box;
+/* Force borderless edge-to-edge layout for Android Chrome & Mobile Web */
+html, body {
+  width: 100vw;
+  min-height: 100vh;
   margin: 0;
   padding: 0;
-}
-
-html, body {
-  width: 100%;
-  min-height: 100vh;
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  background-color: var(--bg-pistachio-main);
-  color: var(--text-charcoal);
   overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
+  background-color: #1D050C;
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* Base Canvas Overlays */
-.overlay-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  z-index: 99;
+body.borderless-android {
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
 }
 
-#pigeonCanvas {
-  z-index: 100;
-}
-
-.petal-layer {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 15;
-  overflow: hidden;
-}
-
-.petal {
-  position: absolute;
-  background: radial-gradient(circle, var(--pink-blush-accent) 0%, var(--pink-blush-dark) 80%);
-  border-radius: 50% 0 50% 50%;
-  opacity: 0.7;
-  animation: fallPetal linear infinite;
-}
-
-@keyframes fallPetal {
-  0% {
-    transform: translateY(-10vh) rotate(0deg) scale(0.8);
-    opacity: 0;
-  }
-  10% { opacity: 0.8; }
-  90% { opacity: 0.8; }
-  100% {
-    transform: translateY(105vh) rotate(720deg) scale(1.1);
-    opacity: 0;
-  }
-}
-
-/* Floating Music Control Button */
-.music-btn {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 120;
-  background: rgba(250, 253, 249, 0.88);
-  border: 1px solid var(--gold-antique);
-  border-radius: 50px;
-  padding: 8px 16px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(8px);
-  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.music-btn:hover {
-  transform: scale(1.05);
-}
-
-.music-waves {
-  display: flex;
-  align-items: flex-end;
-  gap: 3px;
-  height: 14px;
-}
-
-.music-waves span {
-  width: 3px;
-  background-color: var(--pink-blush-dark);
-  border-radius: 2px;
-  height: 100%;
-  animation: wave 1.2s ease-in-out infinite alternate;
-}
-
-.music-waves span:nth-child(2) { animation-delay: 0.3s; }
-.music-waves span:nth-child(3) { animation-delay: 0.6s; }
-
-@keyframes wave {
-  0% { height: 3px; }
-  100% { height: 14px; }
-}
-
-
-/* ============================================================
-   INITIATOR OVERLAY — VINTAGE ROSE ARCH & BRAIDED STRING
-   ============================================================ */
-
-.initiator-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 90;
-  background: var(--initiator-pink-bg);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 10px 30px 10px;
-  perspective: 1200px;
-  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.2s;
-  overflow: hidden;
-}
-
-.initiator-overlay.opened {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-
-.royal-glow {
-  position: absolute;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(217, 136, 128, 0.35) 0%, transparent 70%);
-  top: 42%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  filter: blur(50px);
-  pointer-events: none;
-}
-
-/* BRAIDED RED & GOLD PULL STRING (FULL DORI & TASSEL DISPLAY) */
-.string-wrapper {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 95;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  touch-action: none;
-  cursor: grab;
-}
-
-.string-wrapper:active {
-  cursor: grabbing;
-}
-
-.pull-tassel-img {
+/* CUSTOM SCRATCH CARD SECTION INTEGRATION IN TEMPLATE09 */
+.custom-scratch-section {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  cursor: pointer;
-  user-select: none;
-  touch-action: none;
-  transition: transform 0.1s ease-out;
-  margin-top: 0;
-}
-
-.braided-string-img {
-  height: clamp(260px, 35vh, 360px);
-  width: auto;
-  max-width: 90px;
-  object-fit: contain;
-  filter: drop-shadow(0 6px 15px rgba(0, 0, 0, 0.6));
-  pointer-events: none;
-}
-
-.tassel-glow {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: radial-gradient(circle, var(--gold-shadow) 0%, transparent 70%);
-  animation: pulseGlow 2s ease-in-out infinite alternate;
-}
-
-@keyframes pulseGlow {
-  0% { transform: translateX(-50%) scale(0.9); opacity: 0.5; }
-  100% { transform: translateX(-50%) scale(1.2); opacity: 1; }
-}
-
-/* BOTTOM PULL INSTRUCTION */
-.pull-instruction-bottom {
-  position: absolute;
-  bottom: 20px;
-  left: 0;
-  right: 0;
-  width: 100%;
-  z-index: 92;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  pointer-events: none;
-  padding: 0 10px;
-  animation: bounceText 2s ease-in-out infinite;
-}
-
-.pull-instruction-bottom .pull-arrow {
-  font-size: 22px;
-  color: var(--gold-champagne);
-  line-height: 1;
-  margin-bottom: 2px;
-}
-
-.instruction-title {
-  font-family: 'Cinzel', serif;
-  font-size: clamp(11px, 3.2vw, 13px);
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--gold-light);
-  white-space: nowrap;
-}
-
-.couple-name-preview {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  font-family: 'Pinyon Script', cursive;
-  font-size: clamp(20px, 4.5vw, 26px);
-  color: var(--pink-blush-accent);
-  white-space: nowrap;
-  margin-top: 2px;
-  width: 100%;
-}
-
-.couple-name-preview .weds-mini {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: 15px;
-  color: var(--gold-light);
-}
-
-@keyframes bounceText {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(6px); }
-}
-
-
-/* 3D SCALLOPED ROYAL ARCHITECTURE & BACKGROUND IMAGE ZOOM */
-.gate-viewport {
-  position: absolute;
-  top: 46%;
-  left: 50%;
-  transform: translate(-50%, -46%);
-  width: clamp(290px, 82vw, 480px);
-  height: clamp(380px, 60vh, 560px);
-  perspective: 1200px;
-  transform-style: preserve-3d;
-  transition: transform 1.8s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-/* ROYAL ARCH BACKGROUND ZOOM CONTAINER */
-.arch-bg-zoom-container {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  overflow: hidden;
-  border-radius: 260px 260px 0 0;
-}
-
-.royal-arch-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transform-origin: center center;
-  transition: transform 2.2s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-/* ZOOM IN ANIMATION WHEN STRING IS PULLED */
-.initiator-overlay.opened .royal-arch-img {
-  transform: scale(3.2) translateY(-8%);
-}
-
-.gate-arch {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border: 4px solid var(--gold-antique);
-  border-radius: 260px 260px 0 0;
-  box-shadow: 0 0 45px rgba(0, 0, 0, 0.7), inset 0 0 30px rgba(184, 151, 72, 0.2);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  z-index: 3;
-}
-
-.arch-header {
-  height: 100px;
-  background: linear-gradient(180deg, rgba(35, 18, 26, 0.85) 0%, transparent 100%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 2px solid var(--gold-antique);
-  z-index: 5;
-}
-
-.lotus-motif {
-  font-size: 26px;
-  color: var(--pink-blush-accent);
-}
-
-.gate-subtitle {
-  font-family: 'Cinzel', serif;
-  font-size: 13px;
-  letter-spacing: 4px;
-  color: var(--gold-light);
-  margin-top: 4px;
-}
-
-.gate-doors-container {
-  flex: 1;
-  display: flex;
-  position: relative;
-  perspective: 1000px;
-}
-
-.royal-door {
-  width: 50%;
-  height: 100%;
-  background: rgba(44, 22, 32, 0.95);
-  border: 1px solid var(--gold-dark);
-  position: relative;
-  transition: transform 1.6s cubic-bezier(0.77, 0, 0.175, 1);
-  transform-style: preserve-3d;
-}
-
-.door-left {
-  transform-origin: left center;
-  border-right: 2px solid var(--gold-antique);
-}
-
-.door-right {
-  transform-origin: right center;
-  border-left: 2px solid var(--gold-antique);
-}
-
-/* Door open animation state */
-.initiator-overlay.opened .door-left {
-  transform: rotateY(-110deg);
-}
-
-.initiator-overlay.opened .door-right {
-  transform: rotateY(110deg);
-}
-
-.initiator-overlay.opened .gate-viewport {
-  transform: translate(-50%, -46%) scale(2.8);
-}
-
-.door-panel {
-  inset: 12px;
-  position: absolute;
-  border: 1px solid rgba(184, 151, 72, 0.4);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: radial-gradient(circle, rgba(217, 136, 128, 0.12) 0%, transparent 70%);
-}
-
-.jaali-pattern {
-  position: absolute;
-  inset: 0;
-  opacity: 0.18;
-  background-image: repeating-linear-gradient(45deg, var(--gold-antique) 0, var(--gold-antique) 1px, transparent 0, transparent 50%);
-  background-size: 16px 16px;
-}
-
-.door-brass-ring {
-  width: 40px;
-  height: 40px;
-  border: 3px solid var(--gold-antique);
-  border-radius: 50%;
-  margin-bottom: 16px;
-  box-shadow: 0 0 10px var(--gold-shadow);
-}
-
-.door-text {
-  text-align: center;
-  color: var(--gold-light);
-}
-
-.door-initial {
-  font-family: 'Pinyon Script', cursive;
-  font-size: 48px;
-  line-height: 1;
-}
-
-.door-text p {
-  font-family: 'Cinzel', serif;
-  font-size: 13px;
-  letter-spacing: 3px;
-  margin-top: 4px;
-}
-
-.gate-threshold {
-  height: 38px;
-  background: rgba(184, 151, 72, 0.2);
-  border-top: 1px solid var(--gold-antique);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  color: var(--gold-light);
-  font-family: 'Cinzel', serif;
-  font-size: 11px;
-  letter-spacing: 3px;
-}
-
-
-/* ============================================================
-   MAIN INVITATION PAGE — MUTED PISTACHIO & VINTAGE DUSTY BLUSH
-   ============================================================ */
-
-.invitation-page {
-  position: relative;
-  min-height: 100vh;
-  padding: 40px 15px 80px 15px;
-  display: flex;
-  justify-content: center;
-  transition: opacity 1s ease-in;
-}
-
-.hidden-page {
-  display: none;
-  opacity: 0;
-}
-
-.pistachio-frame {
-  position: relative;
-  width: 100%;
-  max-width: 850px;
-  background-color: var(--bg-pistachio-card);
-  border: 2px solid var(--gold-antique);
-  border-radius: 16px;
-  box-shadow: 0 15px 40px rgba(27, 38, 29, 0.12), inset 0 0 80px rgba(213, 224, 208, 0.4);
-  padding: 50px 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 60px;
-}
-
-/* Corner Ornaments */
-.corner-ornament {
-  position: absolute;
-  font-size: 28px;
-  color: var(--gold-antique);
-}
-
-.top-left { top: 12px; left: 15px; }
-.top-right { top: 12px; right: 15px; }
-.bottom-left { bottom: 12px; left: 15px; }
-.bottom-right { bottom: 12px; right: 15px; }
-
-/* HERO SECTION */
-.hero-section {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.header-flourish {
-  font-size: 22px;
-  color: var(--gold-antique);
-  margin-bottom: 10px;
-}
-
-.invitation-eyebrow {
-  font-family: 'Cinzel', serif;
-  font-size: 13px;
-  letter-spacing: 4px;
-  color: var(--text-sage);
-  margin-bottom: 25px;
-}
-
-/* INITIALS BADGE (A & S IN SAME HORIZONTAL LINE) */
-.couple-badge {
-  width: 96px;
-  height: 96px;
-  border-radius: 50%;
-  border: 2px dashed var(--gold-antique);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 25px;
-  background: var(--bg-pistachio-light);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-}
-
-.couple-initials {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  font-family: 'Pinyon Script', cursive;
-  white-space: nowrap;
-}
-
-.couple-initials .init-a,
-.couple-initials .init-s {
-  font-size: 38px;
-  color: var(--text-charcoal);
-  line-height: 1;
-}
-
-.couple-initials .init-amp {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: 22px;
-  color: var(--pink-blush-dark);
-  line-height: 1;
-}
-
-.invitation-sub {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 16px;
-  letter-spacing: 2px;
-  color: var(--text-muted);
-  max-width: 500px;
-  margin-bottom: 20px;
-}
-
-/* 3-LINE COUPLE NAME LAYOUT (Arya / weds / Siddhanshi) */
-.couple-names {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2px;
-  margin: 15px 0 25px 0;
-  text-align: center;
-}
-
-.groom-name {
-  font-family: 'Pinyon Script', cursive;
-  font-size: clamp(52px, 10vw, 84px);
-  color: var(--text-charcoal);
-  line-height: 1;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
-}
-
-.weds-text {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: clamp(24px, 5vw, 36px);
-  color: var(--pink-blush-dark);
-  letter-spacing: 3px;
-  margin: 4px 0;
-}
-
-.bride-name {
-  font-family: 'Pinyon Script', cursive;
-  font-size: clamp(52px, 10vw, 84px);
-  color: var(--text-charcoal);
-  line-height: 1;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
-}
-
-.wedding-tagline {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: 20px;
-  color: var(--text-sage);
-  max-width: 520px;
-}
-
-.divider-line {
-  margin-top: 30px;
-  color: var(--gold-antique);
-  font-size: 18px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-
-/* CARD SECTIONS GENERAL */
-.card-section {
+  background: radial-gradient(circle at 50% 50%, #290812 0%, #120307 100%);
+  padding: 60px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-}
-
-/* SCRATCH CARD SECTION (EXACT PROMPT DESIGN REQUIREMENTS) */
-.scratch-section {
-  width: 100%;
+  border-top: 1px solid rgba(216, 169, 87, 0.3);
+  border-bottom: 1px solid rgba(216, 169, 87, 0.3);
 }
 
 .scratch-header {
@@ -661,15 +43,15 @@ html, body {
   font-size: 13px;
   letter-spacing: 4px;
   text-transform: uppercase;
-  color: var(--gold-antique);
+  color: #D8A957;
   margin-bottom: 8px;
 }
 
 .scratch-title {
-  font-family: 'Playfair Display', Cormorant Garamond, serif;
-  font-size: clamp(20px, 4.8vw, 28px);
+  font-family: 'Cormorant Garamond', 'Playfair Display', serif;
+  font-size: clamp(22px, 5vw, 32px);
   font-weight: 600;
-  color: var(--text-charcoal);
+  color: #FFF8EA;
   letter-spacing: 1px;
 }
 
@@ -679,10 +61,10 @@ html, body {
   height: 160px;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15), 0 0 20px rgba(184, 151, 72, 0.3);
-  border: 2px solid var(--gold-antique);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.8), 0 0 25px rgba(216, 169, 87, 0.35);
+  border: 2px solid #D8A957;
   background: radial-gradient(circle, #241c0e 0%, #120e07 100%);
-  margin-bottom: 15px;
+  margin-bottom: 18px;
 }
 
 .scratch-reveal {
@@ -694,8 +76,8 @@ html, body {
   justify-content: center;
   padding: 20px;
   gap: 8px;
-  background: radial-gradient(circle at 50% 50%, rgba(184, 151, 72, 0.28) 0%, rgba(15, 12, 6, 0.95) 85%);
-  box-shadow: inset 0 0 25px rgba(212, 175, 55, 0.35);
+  background: radial-gradient(circle at 50% 50%, rgba(216, 169, 87, 0.28) 0%, rgba(15, 12, 6, 0.95) 85%);
+  box-shadow: inset 0 0 25px rgba(216, 169, 87, 0.35);
   user-select: none;
 }
 
@@ -703,15 +85,15 @@ html, body {
   font-family: 'Cinzel', serif;
   font-size: 12px;
   letter-spacing: 3px;
-  color: var(--gold-champagne);
+  color: #D8A957;
   text-transform: uppercase;
 }
 
 .reveal-date {
-  font-family: 'Playfair Display', Cormorant Garamond, serif;
+  font-family: 'Cormorant Garamond', 'Playfair Display', serif;
   font-size: 26px;
   font-weight: 700;
-  color: var(--gold-light);
+  color: #FFF3CC;
   letter-spacing: 2px;
   text-shadow: 0 0 12px rgba(243, 229, 171, 0.6);
 }
@@ -731,187 +113,10 @@ html, body {
   font-family: 'Cinzel', serif;
   font-size: 13px;
   letter-spacing: 1.5px;
-  color: var(--gold-dark);
+  color: rgba(216, 169, 87, 0.85);
 }
 
-
-/* EVENTS GRID */
-.events-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-  width: 100%;
-}
-
-.event-card {
-  background: var(--bg-pistachio-light);
-  border: 1px solid var(--gold-antique);
-  border-radius: 12px;
-  padding: 25px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.event-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-}
-
-.featured-event {
-  background: linear-gradient(135deg, #FBF4F2 0%, var(--bg-pistachio-light) 100%);
-  border: 2px solid var(--gold-antique);
-}
-
-.event-badge {
-  font-size: 28px;
-}
-
-.event-card h3 {
-  font-family: 'Cinzel', serif;
-  font-size: 18px;
-  letter-spacing: 2px;
-  color: var(--text-charcoal);
-}
-
-.event-desc {
-  font-size: 14px;
-  font-style: italic;
-  color: var(--text-muted);
-}
-
-.event-details {
-  margin-top: 10px;
-  font-size: 14px;
-  color: var(--text-sage);
-  line-height: 1.6;
-}
-
-
-/* VENUE SECTION */
-.venue-box {
-  width: 100%;
-  background: var(--bg-pistachio-light);
-  border: 1px solid var(--gold-antique);
-  border-radius: 12px;
-  padding: 35px 25px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.04);
-}
-
-.venue-name {
-  font-family: 'Cinzel', serif;
-  font-size: 24px;
-  letter-spacing: 2px;
-  color: var(--text-charcoal);
-  margin-bottom: 8px;
-}
-
-.venue-address {
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--text-sage);
-  margin-bottom: 12px;
-}
-
-.venue-note {
-  font-size: 15px;
-  font-style: italic;
-  color: var(--text-muted);
-  margin-bottom: 25px;
-}
-
-.btn-location {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: linear-gradient(135deg, var(--gold-antique), var(--gold-dark));
-  color: #FFFDF7;
-  text-decoration: none;
-  font-family: 'Cinzel', serif;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  padding: 14px 28px;
-  border-radius: 30px;
-  box-shadow: 0 4px 15px var(--gold-shadow);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.btn-location:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(184, 151, 72, 0.5);
-}
-
-
-/* CLOSING SECTION */
-.quote-container {
-  max-width: 600px;
-  margin-bottom: 30px;
-}
-
-.quote-mark {
-  font-family: 'Pinyon Script', cursive;
-  font-size: 60px;
-  color: var(--pink-blush-dark);
-  line-height: 0.5;
-}
-
-.blessing-quote {
-  font-size: 22px;
-  font-style: italic;
-  color: var(--text-sage);
-  line-height: 1.5;
-}
-
-.closing-signature {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-
-.closing-signature p {
-  font-size: 16px;
-  color: var(--text-muted);
-}
-
-.closing-signature h4 {
-  font-family: 'Pinyon Script', cursive;
-  font-size: 38px;
-  color: var(--text-charcoal);
-}
-
-.bottom-flourish {
-  color: var(--gold-antique);
-  margin-top: 10px;
-}
-
-
-/* RESPONSIVE MEDIA QUERIES */
-@media (max-width: 600px) {
-  .pistachio-frame {
-    padding: 30px 18px;
-    gap: 45px;
-  }
-
-  .groom-name, .bride-name {
-    font-size: 46px;
-  }
-
-  .weds-text {
-    font-size: 22px;
-  }
-
-  .scratch-card-wrapper {
-    width: 290px;
-    height: 145px;
-  }
-
-  .gate-viewport {
-    width: 88vw;
-    height: 52vh;
-  }
+/* Ensure smooth touch interactions on mobile devices */
+.rope-button, .lotus-button, .menu-toggle, .music-toggle {
+  touch-action: manipulation;
 }
