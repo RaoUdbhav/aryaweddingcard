@@ -354,7 +354,10 @@ function renderEvents() {
           <img class="farman-motif" src="${evt.icon}" alt="${evt.name} motif" decoding="async">
           <h3 class="farman-name">${evt.name}</h3>
           <div class="farman-rule" aria-hidden="true"></div>
-          <p class="farman-datetime">${evt.date} &middot; ${evt.time}</p>
+          <p class="farman-datetime">
+            <span class="farman-date-line">${evt.date}</span>
+            <span class="farman-time-line">${evt.time}</span>
+          </p>
           <p class="farman-venue">${evt.venue}</p>
           ${evt.note ? `<p class="farman-note">${evt.note}</p>` : ""}
           ${evt.map ? `<a class="farman-map" href="${evt.map}" target="_blank" rel="noopener noreferrer">📍 Open in Maps</a>` : ""}
