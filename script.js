@@ -1,10 +1,19 @@
 /* ============================================================
-   WEDDING INVITATION — CUSTOM SCRIPT & SCRATCH CARD LOGIC
+   WEDDING INVITATION — LOCAL ASSET HYDRATION & SCRATCH CARD LOGIC
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // Initialize Scratch Card Effect
+  // Ensure Intro Backgrounds & Rope Image load from local assets
+  const darkBg = document.getElementById('introBgDark');
+  const litBg = document.getElementById('introBgLit');
+  const ropeImg = document.getElementById('ropeImg');
+
+  if (darkBg) darkBg.src = 'assets/hero/pn-hro-bg-courtyard-dark-m-v03.webp';
+  if (litBg) litBg.src = 'assets/hero/pn-hro-bg-courtyard-lit-m-v03.webp';
+  if (ropeImg) ropeImg.src = 'assets/hero/pn-hro-el-rope-hemp-pull-x-v01.webp';
+
+  // Initialize Custom Scratch Card Effect
   const canvas = document.getElementById('scratchCanvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');

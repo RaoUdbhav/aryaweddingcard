@@ -1,5 +1,5 @@
 /* ============================================================
-   ANDROID BORDERLESS & SHAADIPATH TEMPLATE09 CUSTOM OVERRIDES
+   ANDROID BORDERLESS & SHAADIPATH TEMPLATE09 ASSET FALLBACKS
    ============================================================ */
 
 /* Force borderless edge-to-edge layout for Android Chrome & Mobile Web */
@@ -18,6 +18,33 @@ body.borderless-android {
   padding-bottom: env(safe-area-inset-bottom, 0px);
   padding-left: env(safe-area-inset-left, 0px);
   padding-right: env(safe-area-inset-right, 0px);
+}
+
+/* Ensure Opening Intro Page Background and Pull Rope display 100% reliably */
+#introBgDark {
+  background-image: url('assets/hero/pn-hro-bg-courtyard-dark-m-v03.webp');
+  background-size: cover;
+  background-position: center;
+  opacity: 1 !important;
+}
+
+#introBgLit {
+  background-image: url('assets/hero/pn-hro-bg-courtyard-lit-m-v03.webp');
+  background-size: cover;
+  background-position: center;
+}
+
+@media (min-width: 768px) {
+  #introBgDark {
+    background-image: url('assets/hero/pn-hro-bg-courtyard-dark-D-v03.webp');
+  }
+  #introBgLit {
+    background-image: url('assets/hero/pn-hro-bg-courtyard-lit-d-v03.webp');
+  }
+}
+
+.rope-img {
+  content: url('assets/hero/pn-hro-el-rope-hemp-pull-x-v01.webp');
 }
 
 /* CUSTOM SCRATCH CARD SECTION INTEGRATION IN TEMPLATE09 */
