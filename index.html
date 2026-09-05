@@ -4,12 +4,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#1F0D13">
-  <title>Arya weds Siddhanshi — Wedding Invitation</title>
+  <title>Arya weds Siddhanshi — Wedding Invitation | ShadiPath</title>
+  <meta name="title" content="Arya weds Siddhanshi — Wedding Invitation | ShadiPath">
+  <meta name="description" content="We cordially invite you to join us in celebrating the wedding of Arya & Siddhanshi. View events, venue details, and timings on ShadiPath.">
+  <link rel="canonical" href="https://shadipath.com/">
+
+  <!-- Open Graph / Facebook / WhatsApp -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://shadipath.com/">
+  <meta property="og:title" content="Arya weds Siddhanshi — Wedding Invitation | ShadiPath">
+  <meta property="og:description" content="We cordially invite you to join us in celebrating the wedding of Arya & Siddhanshi. View events, venue details, and timings on ShadiPath.">
+  <meta property="og:image" content="https://shadipath.com/assets/royal_arch.jpg">
+  <meta property="og:site_name" content="ShadiPath">
+  <meta property="og:locale" content="en_IN">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://shadipath.com/">
+  <meta property="twitter:title" content="Arya weds Siddhanshi — Wedding Invitation | ShadiPath">
+  <meta property="twitter:description" content="We cordially invite you to join us in celebrating the wedding of Arya & Siddhanshi. View events, venue details, and timings on ShadiPath.">
+  <meta property="twitter:image" content="https://shadipath.com/assets/royal_arch.jpg">
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Pinyon+Script&family=Cinzel:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Pinyon+Script&family=Cinzel:wght@500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="style.css">
 </head>
@@ -33,44 +52,32 @@
   <div class="petal-layer" id="petalLayer" aria-hidden="true"></div>
 
   <!-- =========================================================
-       INITIATOR OVERLAY — ROSE PINK ARCH & BRAIDED RED-GOLD STRING
+       INITIATOR OVERLAY — ROYAL ARCH ZOOM & BRAIDED RED-GOLD STRING
        ========================================================= -->
   <div id="initiatorOverlay" class="initiator-overlay">
     
-    <!-- Ambient Rose Glow & Floral Background -->
+    <!-- Ambient Rose Glow & Royal Arch Image Backdrop -->
     <div class="royal-glow"></div>
-    <div class="palace-arch-bg"></div>
 
-    <!-- BRAIDED RED & GOLDEN PULL STRING -->
+    <!-- BRAIDED RED & GOLDEN PULL STRING IMAGE -->
     <div class="string-wrapper" id="stringWrapper">
-      <svg class="string-svg" viewBox="0 0 100 400" preserveAspectRatio="none">
-        <!-- Red Base Strand -->
-        <path id="stringPathRed" d="M 50 0 Q 50 150 50 300" stroke="#B22222" stroke-width="5" fill="none" stroke-linecap="round" />
-        <!-- Intertwined Gold Strand -->
-        <path id="stringPathGold" d="M 50 0 Q 50 150 50 300" stroke="#F3E5AB" stroke-width="3" stroke-dasharray="8 6" fill="none" stroke-linecap="round" />
-      </svg>
-
-      <!-- Braided Red & Gold Tassel Knob -->
-      <div id="pullTassel" class="pull-tassel" tabIndex="0" role="button" aria-label="Pull string to open invitation">
-        <div class="tassel-cap">👑</div>
-        <div class="tassel-skirt">
-          <span class="tassel-gold"></span>
-          <span class="tassel-red"></span>
-          <span class="tassel-gold"></span>
-          <span class="tassel-red"></span>
-          <span class="tassel-gold"></span>
-        </div>
+      <div id="pullTassel" class="pull-tassel-img" tabIndex="0" role="button" aria-label="Pull string to open invitation">
+        <img src="assets/braided_string.png" alt="Braided Red and Gold String" class="braided-string-img" />
         <div class="tassel-glow"></div>
       </div>
     </div>
 
     <!-- 3D SCALLOPED ROYAL JHAROKHA GATE -->
     <div class="gate-viewport" id="gateViewport">
+      <!-- ROYAL ARCH ZOOM BACKGROUND IMAGE LAYER -->
+      <div class="arch-bg-zoom-container" id="archBgZoomContainer">
+        <img src="assets/royal_arch.jpg" alt="Royal Arch Palace" class="royal-arch-img" id="royalArchImg" />
+      </div>
+
       <div class="gate-arch">
         <div class="arch-header">
           <span class="lotus-motif">🪷</span>
           <p class="gate-subtitle">WEDDING INVITATION</p>
-          <div class="scallop-trim"></div>
         </div>
 
         <div class="gate-doors-container" id="gateDoorsContainer">
@@ -135,7 +142,7 @@
         <div class="header-flourish">❁ ✿ ❁</div>
         <p class="invitation-eyebrow">WITH THE BLESSINGS OF OUR FAMILIES</p>
         
-        <!-- INITIALS BADGE (FIXED IN SAME HORIZONTAL LINE: A & S) -->
+        <!-- INITIALS BADGE (SAME HORIZONTAL LINE: A & S) -->
         <div class="couple-badge">
           <div class="couple-initials">
             <span class="init-a">A</span>
@@ -160,25 +167,26 @@
         </div>
       </section>
 
-      <!-- SCRATCH CARD SECTION (ORIGINAL HIGH-QUALITY TEXTURED SCRATCH CARD) -->
+      <!-- SCRATCH CARD SECTION (EXACT REQUESTED DIGITAL CARD EFFECT) -->
       <section class="card-section scratch-section">
-        <div class="section-header">
-          <span class="section-icon">✨</span>
-          <h2>A LITTLE SURPRISE</h2>
-          <p class="section-sub">Scratch the gold card below to reveal our wedding date</p>
+        <div class="scratch-header">
+          <p class="scratch-eyebrow">A LITTLE SURPRISE</p>
+          <h2 class="scratch-title">Scratch to Reveal Our Wedding Date</h2>
         </div>
 
-        <div class="scratch-card-container">
-          <div class="scratch-card" id="scratchCard">
-            <div class="scratch-answer">
-              <span class="date-label">OUR WEDDING DAY</span>
-              <strong id="weddingDate" class="wedding-date">15 · JANUARY · 2027</strong>
-              <span class="venue-city">SONIPAT, HARYANA</span>
-            </div>
-            <canvas id="scratchCanvas" aria-label="Scratch card to reveal wedding date"></canvas>
+        <div class="scratch-card-wrapper">
+          <!-- Bottom Layer (The Reveal) -->
+          <div class="scratch-reveal">
+            <span class="reveal-subtitle">OUR WEDDING DAY</span>
+            <strong class="reveal-date">15 . JANUARY . 2027</strong>
           </div>
-          <p class="scratch-hint">✨ Rub your finger or mouse over the gold layer ✨</p>
+
+          <!-- Top Layer (The Overlay Canvas) -->
+          <canvas id="scratchCanvas" class="scratch-canvas" aria-label="Scratch card overlay"></canvas>
         </div>
+
+        <!-- Footer Text -->
+        <p class="scratch-footer">Use your finger to scratch 👆</p>
       </section>
 
       <!-- CELEBRATION EVENTS SECTION -->

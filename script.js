@@ -27,10 +27,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // -----------------------------------------------------------------
   const sparkles = [];
   function createSparkle(x, y) {
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 5; i++) {
       sparkles.push({
-        x: x + (Math.random() - 0.5) * 20,
-        y: y + (Math.random() - 0.5) * 20,
+        x: x + (Math.random() - 0.5) * 25,
+        y: y + (Math.random() - 0.5) * 25,
         vx: (Math.random() - 0.5) * 4,
         vy: (Math.random() - 0.5) * 4 - 2,
         size: Math.random() * 4 + 2,
@@ -163,32 +163,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // -----------------------------------------------------------------
-  // 4. BRAIDED RED & GOLD PULL STRING MECHANICS
+  // 4. BRAIDED RED & GOLD PULL STRING MECHANICS (IMAGE TASSEL)
   // -----------------------------------------------------------------
   const pullTassel = document.getElementById('pullTassel');
-  const stringPathRed = document.getElementById('stringPathRed');
-  const stringPathGold = document.getElementById('stringPathGold');
   const initiatorOverlay = document.getElementById('initiatorOverlay');
   const invitationPage = document.getElementById('invitationPage');
 
   let isDragging = false;
   let startY = 0;
   let currentY = 0;
-  const maxPull = 160;
+  const maxPull = 170;
   const triggerThreshold = 120;
   let isUnlocked = false;
 
-  function updateStringCurve(pullDistance) {
-    const bend = pullDistance * 0.3;
-    const pathD = `M 50 0 Q ${50 + bend} ${150 + pullDistance / 2} 50 ${250 + pullDistance}`;
-    if (stringPathRed) stringPathRed.setAttribute('d', pathD);
-    if (stringPathGold) stringPathGold.setAttribute('d', pathD);
-    
+  function updateStringPosition(pullDistance) {
     pullTassel.style.transform = `translateY(${pullDistance}px)`;
 
-    // Emit sparkles along the tassel position
+    // Emit sparkles along the bottom of the tassel image
     const tasselRect = pullTassel.getBoundingClientRect();
-    createSparkle(tasselRect.left + tasselRect.width / 2, tasselRect.top + tasselRect.height / 2);
+    createSparkle(tasselRect.left + tasselRect.width / 2, tasselRect.bottom - 15);
   }
 
   function resetString() {
@@ -198,9 +191,9 @@ document.addEventListener('DOMContentLoaded', () => {
       currentPull *= 0.75;
       if (Math.abs(currentPull) < 1) {
         currentPull = 0;
-        updateStringCurve(0);
+        updateStringPosition(0);
       } else {
-        updateStringCurve(currentPull);
+        updateStringPosition(currentPull);
         requestAnimationFrame(springBack);
       }
     }
@@ -220,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (deltaY > 0) {
       currentY = Math.min(deltaY, maxPull);
-      updateStringCurve(currentY);
+      updateStringPosition(currentY);
 
       if (currentY >= triggerThreshold) {
         unlockGateSequence();
@@ -244,13 +237,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // -----------------------------------------------------------------
-  // 5. ROYAL GATE UNLOCK & CAMERA TRANSITION
+  // 5. ROYAL ARCH ZOOM & GATE UNLOCK SEQUENCE
   // -----------------------------------------------------------------
   function unlockGateSequence() {
     isUnlocked = true;
     isDragging = false;
 
-    // Trigger Door Open & Camera Forward Zoom
+    // Trigger Door Open & Royal Arch Image Zoom Forward
     initiatorOverlay.classList.add('opened');
 
     // Launch Pigeon Flock
@@ -264,7 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
       invitationPage.classList.remove('hidden-page');
       initPetalFall();
       setupOriginalScratchCard();
-    }, 1300);
+    }, 1350);
   }
 
 
@@ -286,101 +279,114 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // -----------------------------------------------------------------
-  // 7. ORIGINAL HIGH-QUALITY SCRATCH CARD FEATURE (FROM REFERENCE SITE)
+  // 7. EXACT "SCRATCH TO REVEAL" DIGITAL CARD EFFECT LOGIC
   // -----------------------------------------------------------------
   function setupOriginalScratchCard() {
-    const scratchCanvas = document.getElementById("scratchCanvas");
-    const scratchCard = document.getElementById("scratchCard");
-    const weddingDate = document.getElementById("weddingDate");
-    if (!scratchCanvas || !scratchCard) return;
-
-    const rect = scratchCard.getBoundingClientRect();
-    const dpr = window.devicePixelRatio || 1;
-
-    scratchCanvas.width = Math.max(1, Math.floor(rect.width * dpr));
-    scratchCanvas.height = Math.max(1, Math.floor(rect.height * dpr));
-
-    const scratchCtx = scratchCanvas.getContext("2d");
-    if (!scratchCtx) return;
-
-    scratchCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    const w = rect.width;
-    const h = rect.height;
-
-    // Rich Gold Coating Texture
-    const gradient = scratchCtx.createLinearGradient(0, 0, w, h);
-    gradient.addColorStop(0, "#8a5d12");
-    gradient.addColorStop(0.2, "#e1b949");
-    gradient.addColorStop(0.4, "#f7dc82");
-    gradient.addColorStop(0.6, "#b17a1b");
-    gradient.addColorStop(0.8, "#edca63");
-    gradient.addColorStop(1, "#8a5d12");
-
-    scratchCtx.globalCompositeOperation = "source-over";
-    scratchCtx.fillStyle = gradient;
-    scratchCtx.fillRect(0, 0, w, h);
-
-    // Metallic Speckle Noise Dots
-    for (let i = 0; i < 300; i++) {
-      scratchCtx.fillStyle = i % 2 ? "rgba(255,255,255,0.18)" : "rgba(60,35,5,0.14)";
-      const size = Math.random() * 2 + 0.5;
-      scratchCtx.fillRect(Math.random() * w, Math.random() * h, size, size);
-    }
-
-    // Elegant Instruction Text
-    scratchCtx.textAlign = "center";
-    scratchCtx.textBaseline = "middle";
-    scratchCtx.fillStyle = "#241806";
-    scratchCtx.font = "bold 18px Georgia, serif";
-    scratchCtx.fillText("SCRATCH TO REVEAL", w / 2, h / 2 - 10);
-
-    scratchCtx.font = "bold 12px Georgia, serif";
-    scratchCtx.fillText("✦ OUR WEDDING DATE ✦", w / 2, h / 2 + 18);
+    const canvas = document.getElementById('scratchCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const wrapper = canvas.parentElement;
 
     let isScratching = false;
+    let lastX = 0;
+    let lastY = 0;
 
-    function getScratchPos(e) {
-      const bounds = scratchCanvas.getBoundingClientRect();
+    function initCanvas() {
+      const rect = wrapper.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.scale(dpr, dpr);
+
+      // Metallic Silver Coating Gradient
+      const gradient = ctx.createLinearGradient(0, 0, rect.width, rect.height);
+      gradient.addColorStop(0, '#D8D8D8');
+      gradient.addColorStop(0.3, '#F0F0F0');
+      gradient.addColorStop(0.5, '#C0C0C0');
+      gradient.addColorStop(0.8, '#E8E8E8');
+      gradient.addColorStop(1, '#B0B0B0');
+
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, rect.width, rect.height);
+
+      // Speckle noise pattern
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.06)';
+      for (let i = 0; i < 400; i++) {
+        const x = Math.random() * rect.width;
+        const y = Math.random() * rect.height;
+        ctx.fillRect(x, y, 1.5, 1.5);
+      }
+
+      // Overlay hint on silver coating
+      ctx.fillStyle = '#555555';
+      ctx.font = 'bold 14px "Cinzel", serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('✨ SCRATCH HERE ✨', rect.width / 2, rect.height / 2);
+    }
+
+    function getCoords(e) {
+      const rect = canvas.getBoundingClientRect();
       const clientX = e.touches ? e.touches[0].clientX : e.clientX;
       const clientY = e.touches ? e.touches[0].clientY : e.clientY;
       return {
-        x: clientX - bounds.left,
-        y: clientY - bounds.top
+        x: clientX - rect.left,
+        y: clientY - rect.top
       };
     }
 
-    function scratchAt(x, y) {
-      scratchCtx.save();
-      scratchCtx.globalCompositeOperation = "destination-out";
-      scratchCtx.beginPath();
-      scratchCtx.arc(x, y, 22, 0, Math.PI * 2);
-      scratchCtx.fill();
-      scratchCtx.restore();
+    function scratchLine(x1, y1, x2, y2) {
+      ctx.save();
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.lineWidth = 36;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+
+      ctx.beginPath();
+      ctx.moveTo(x1, y1);
+      ctx.lineTo(x2, y2);
+      ctx.stroke();
+      ctx.restore();
     }
 
-    function handleScratchStart(e) {
+    function startScratch(e) {
       isScratching = true;
-      const pos = getScratchPos(e);
-      scratchAt(pos.x, pos.y);
+      const pos = getCoords(e);
+      lastX = pos.x;
+      lastY = pos.y;
+      scratchLine(lastX, lastY, lastX, lastY);
     }
 
-    function handleScratchMove(e) {
+    function moveScratch(e) {
       if (!isScratching) return;
-      const pos = getScratchPos(e);
-      scratchAt(pos.x, pos.y);
+      const pos = getCoords(e);
+      scratchLine(lastX, lastY, pos.x, pos.y);
+      lastX = pos.x;
+      lastY = pos.y;
     }
 
-    function handleScratchEnd() {
+    function endScratch() {
       isScratching = false;
     }
 
-    scratchCanvas.addEventListener("mousedown", handleScratchStart);
-    scratchCanvas.addEventListener("mousemove", handleScratchMove);
-    window.addEventListener("mouseup", handleScratchEnd);
+    // Mouse Listeners
+    canvas.addEventListener('mousedown', startScratch);
+    canvas.addEventListener('mousemove', moveScratch);
+    window.addEventListener('mouseup', endScratch);
 
-    scratchCanvas.addEventListener("touchstart", handleScratchStart, { passive: true });
-    scratchCanvas.addEventListener("touchmove", handleScratchMove, { passive: true });
-    window.addEventListener("touchend", handleScratchEnd);
+    // Touch Listeners
+    canvas.addEventListener('touchstart', (e) => {
+      startScratch(e);
+    }, { passive: true });
+
+    canvas.addEventListener('touchmove', (e) => {
+      moveScratch(e);
+    }, { passive: true });
+
+    window.addEventListener('touchend', endScratch);
+
+    initCanvas();
   }
 
 
@@ -400,7 +406,6 @@ document.addEventListener('DOMContentLoaded', () => {
       audioCtx.resume();
     }
 
-    // Pentatonic scale frequency notes (Flute/Sitar ambient feel)
     const notes = [261.63, 293.66, 329.63, 392.00, 440.00, 523.25, 587.33];
     
     function playNote() {
