@@ -482,9 +482,7 @@ function triggerIntro() {
     introEl.classList.add("is-lit");
     Sound.ambient();
     setTimeout(() => introEl.classList.add("show-names"), 1000);
-    setTimeout(() => introEl.classList.add("show-date"), 1800);
-    setTimeout(() => introEl.classList.add("show-venue"), 2200);
-    setTimeout(() => introEl.classList.add("show-lotus"), 2800);
+    setTimeout(() => introEl.classList.add("show-lotus"), 1800);
   }
 }
 
