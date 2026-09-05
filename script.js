@@ -36,7 +36,7 @@ const EVENTS = [
   { id: "ghurchari", icon: "assets/event/pn-evt-ico-ghurchari-horse-v01.png", name: "Ghurchari", date: "15th January 2027", time: "1:00 PM", venue: "At Residence", note: "", map: "" },
   { id: "baraat", icon: "assets/event/pn-evt-ico-baraat-arch-v01.png", name: "Baraat", date: "15th January 2027", time: "2:30 PM", venue: "At Residence", note: "The grand royal procession", map: "" },
   { id: "mangal-phere", icon: "assets/event/pn-evt-ico-mangal-phere-havankund-v01.png", name: "Mangal Phere", date: "15th January 2027", time: "5:30 PM", venue: "Shree Jee Vilas, Sonipat", note: "", map: "" },
-  { id: "shaadi", icon: "assets/event/pn-evt-ico-shaadi-x-v01.webp", name: "Wedding", date: "15th January 2027", time: "8:00 PM Onwards", venue: "Shree Jee Vilas, Sonipat", note: "The sacred Pheras & union of souls", map: MAP_URL }
+  { id: "dinner", icon: "assets/event/pn-evt-ico-dinner-thali-v01.png", name: "Dinner", date: "15th January 2027", time: "7:30 PM Onwards", venue: "Shree Jee Vilas, Sonipat", note: "Bold spices, complex aromas and vibrant flavours", map: "" }
 ];
 
 const A = {
