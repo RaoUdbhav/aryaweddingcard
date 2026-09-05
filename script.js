@@ -34,7 +34,7 @@ function farmanNameFallbackClass(e) {
 
 const EVENTS = [
   { id: "ghurchari", icon: "assets/event/pn-evt-ico-ghurchari-horse-v01.png", name: "Ghurchari", date: "15th January 2027", time: "1:00 PM", venue: "At Residence", note: "", map: "" },
-  { id: "baraat", icon: "assets/event/pn-evt-ico-sangeet-x-v01.webp", name: "Baraat", date: "15th January 2027", time: "2:30 PM", venue: "At Residence", note: "The grand royal procession", map: "" },
+  { id: "baraat", icon: "assets/event/pn-evt-ico-baraat-arch-v01.png", name: "Baraat", date: "15th January 2027", time: "2:30 PM", venue: "At Residence", note: "The grand royal procession", map: "" },
   { id: "sangeet", icon: "assets/event/pn-evt-ico-sangeet-x-v01.webp", name: "Sangeet", date: "14th January 2027", time: "7:00 PM Onwards", venue: "Shree Jee Vilas, Sonipat", note: "An evening of music, dance & melody", map: MAP_URL },
   { id: "shaadi", icon: "assets/event/pn-evt-ico-shaadi-x-v01.webp", name: "Wedding", date: "15th January 2027", time: "8:00 PM Onwards", venue: "Shree Jee Vilas, Sonipat", note: "The sacred Pheras & union of souls", map: MAP_URL }
 ];
