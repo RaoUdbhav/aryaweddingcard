@@ -33,7 +33,7 @@ function farmanNameFallbackClass(e) {
 }
 
 const EVENTS = [
-  { id: "mehendi", icon: "assets/event/pn-evt-ico-mehendi-x-v01.webp", name: "Mehendi", date: "13th January 2027", time: "4:00 PM Onwards", venue: "Shree Jee Vilas, Sonipat", note: "A splash of henna and vibrant colors", map: MAP_URL },
+  { id: "ghurchari", icon: "assets/event/pn-evt-ico-ghurchari-horse-v01.png", name: "Ghurchari", date: "15th January 2027", time: "1:00 PM", venue: "At Residence", note: "", map: "" },
   { id: "sangeet", icon: "assets/event/pn-evt-ico-sangeet-x-v01.webp", name: "Sangeet", date: "14th January 2027", time: "7:00 PM Onwards", venue: "Shree Jee Vilas, Sonipat", note: "An evening of music, dance & melody", map: MAP_URL },
   { id: "baraat", icon: "assets/event/pn-evt-ico-sangeet-x-v01.webp", name: "Baraat", date: "15th January 2027", time: "5:00 PM Onwards", venue: "Shree Jee Vilas, Sonipat", note: "The grand royal procession", map: MAP_URL },
   { id: "shaadi", icon: "assets/event/pn-evt-ico-shaadi-x-v01.webp", name: "Wedding", date: "15th January 2027", time: "8:00 PM Onwards", venue: "Shree Jee Vilas, Sonipat", note: "The sacred Pheras & union of souls", map: MAP_URL }
@@ -357,7 +357,7 @@ function renderEvents() {
           <p class="farman-datetime">${evt.date} &middot; ${evt.time}</p>
           <p class="farman-venue">${evt.venue}</p>
           ${evt.note ? `<p class="farman-note">${evt.note}</p>` : ""}
-          <a class="farman-map" href="${evt.map}" target="_blank" rel="noopener noreferrer">📍 Open in Maps</a>
+          ${evt.map ? `<a class="farman-map" href="${evt.map}" target="_blank" rel="noopener noreferrer">📍 Open in Maps</a>` : ""}
         </div>
       </div>
     `.trim();

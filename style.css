@@ -329,3 +329,14 @@ body.borderless-android {
 #introOrnament {
   display: none !important;
 }
+
+/* Farman Scroll Motif Image Scaling */
+.farman-motif {
+  max-width: 68px !important;
+  max-height: 68px !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  margin: 0 auto 8px !important;
+  display: block !important;
+}
