@@ -233,7 +233,7 @@ body.borderless-android {
   opacity: 0.85 !important;
 }
 
-/* Couple Names: 3-line centered layout */
+/* Couple Names: Forced 3-line centered layout for Android & all mobile viewports */
 .inv-names {
   display: flex !important;
   flex-direction: column !important;
@@ -243,18 +243,34 @@ body.borderless-android {
   padding: 0 !important;
   border: none !important;
   background: transparent !important;
+  width: 100% !important;
+}
+
+.inv-names .inv-name-part,
+.inv-names .word,
+.inv-names span {
+  display: block !important;
+  width: 100% !important;
+  text-align: center !important;
+  clear: both !important;
+  float: none !important;
+  box-sizing: border-box !important;
 }
 
 .inv-name-part {
-  font-size: 26px !important;
+  font-size: 28px !important;
   font-weight: 700 !important;
   color: #451704 !important;
   letter-spacing: 1px !important;
-  line-height: 1.15 !important;
+  line-height: 1.2 !important;
+  margin: 2px 0 !important;
 }
 
 .inv-amp {
-  font-size: 20px !important;
+  display: block !important;
+  width: 100% !important;
+  text-align: center !important;
+  font-size: 22px !important;
   font-weight: 400 !important;
   color: #854d19 !important;
   margin: 2px 0 !important;
