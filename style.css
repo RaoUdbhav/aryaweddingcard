@@ -332,8 +332,8 @@ body.borderless-android {
 
 /* Farman Scroll Motif Image Scaling (Seamless Parchment Blending & Larger Fit) */
 .farman-motif {
-  max-width: 130px !important;
-  max-height: 130px !important;
+  max-width: 145px !important;
+  max-height: 145px !important;
   width: auto !important;
   height: auto !important;
   object-fit: contain !important;
