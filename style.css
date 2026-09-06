@@ -515,3 +515,24 @@ body:not(.intro-active) .intro-monogram-logo {
   color: #FCE8B2 !important;
   text-shadow: 0 0 12px rgba(255, 215, 0, 0.8), 0 2px 8px rgba(0, 0, 0, 0.9) !important;
 }
+
+/* Sanskrit Shloka in Events Section (Golden Engraved Calligraphy) */
+.evt-shloka-wrap {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin: 15px auto 20px !important;
+  width: 100% !important;
+  text-align: center !important;
+}
+
+.evt-shloka-img {
+  width: auto !important;
+  max-width: clamp(150px, 46vw, 210px) !important;
+  height: auto !important;
+  max-height: 420px !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 12px rgba(216, 169, 87, 0.6)) drop-shadow(0 0 24px rgba(255, 215, 0, 0.35)) !important;
+  image-rendering: -webkit-optimize-contrast;
+  transition: transform 0.3s ease, filter 0.3s ease !important;
+}
