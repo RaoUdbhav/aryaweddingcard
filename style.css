@@ -57,6 +57,7 @@ body.borderless-android {
   top: 0 !important;
   transform: translateX(-50%) !important;
   cursor: pointer !important;
+  z-index: 10 !important;
 }
 
 .rope-button.is-ringing .rope-img {
@@ -69,6 +70,54 @@ body.borderless-android {
   50% { transform: rotate(-7deg); }
   75% { transform: rotate(4deg); }
   100% { transform: rotate(0deg); }
+}
+
+/* MONOGRAM COUPLE LOGO IN ARCHWAY CENTER & PULSATING AESTHETIC GLOW */
+.intro-logo-wrap {
+  position: absolute !important;
+  top: 48% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: clamp(170px, 44vw, 270px) !important;
+  z-index: 7 !important;
+  pointer-events: none !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.intro-couple-logo {
+  width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 0 12px rgba(255, 215, 120, 0.45)) drop-shadow(0 0 25px rgba(216, 169, 87, 0.3)) !important;
+  animation: logoAestheticGlow 4s ease-in-out infinite alternate !important;
+}
+
+@keyframes logoAestheticGlow {
+  0% {
+    filter: drop-shadow(0 0 8px rgba(255, 215, 120, 0.3)) drop-shadow(0 0 18px rgba(216, 169, 87, 0.2)) !important;
+    transform: scale(0.99) !important;
+    opacity: 0.92 !important;
+  }
+  100% {
+    filter: drop-shadow(0 0 22px rgba(255, 225, 140, 0.75)) drop-shadow(0 0 45px rgba(216, 169, 87, 0.55)) !important;
+    transform: scale(1.02) !important;
+    opacity: 1 !important;
+  }
+}
+
+/* SHIFT TEXT DOWN BELOW ARCHWAY & LOGO */
+.intro-instruction {
+  bottom: 11% !important;
+}
+
+.pull-label {
+  font-family: 'Cinzel', 'Cormorant Garamond', serif !important;
+  font-size: clamp(14px, 3.8vw, 20px) !important;
+  letter-spacing: 2px !important;
+  color: #F7EBDC !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8) !important;
 }
 
 /* CUSTOM SCRATCH CARD SECTION INTEGRATION IN TEMPLATE09 */
