@@ -44,80 +44,7 @@ body.borderless-android {
 }
 
 .rope-img {
-  content: url('assets/hero/pn-hro-el-temple-bell-x-v01.png') !important;
-  width: clamp(150px, 36vw, 230px) !important;
-  height: auto !important;
-  max-height: 50vh !important;
-  object-fit: contain !important;
-  filter: drop-shadow(0 10px 28px rgba(0, 0, 0, 0.75)) !important;
-  transform-origin: top center !important;
-}
-
-.rope-button {
-  top: 0 !important;
-  transform: translateX(-50%) !important;
-  cursor: pointer !important;
-  z-index: 10 !important;
-}
-
-.rope-button.is-ringing .rope-img {
-  animation: bellRing 0.7s ease-in-out infinite alternate !important;
-}
-
-@keyframes bellRing {
-  0% { transform: rotate(0deg); }
-  25% { transform: rotate(8deg); }
-  50% { transform: rotate(-7deg); }
-  75% { transform: rotate(4deg); }
-  100% { transform: rotate(0deg); }
-}
-
-/* MONOGRAM COUPLE LOGO IN ARCHWAY CENTER & PULSATING AESTHETIC GLOW */
-.intro-logo-wrap {
-  position: absolute !important;
-  top: 48% !important;
-  left: 50% !important;
-  transform: translate(-50%, -50%) !important;
-  width: clamp(170px, 44vw, 270px) !important;
-  z-index: 7 !important;
-  pointer-events: none !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-}
-
-.intro-couple-logo {
-  width: 100% !important;
-  height: auto !important;
-  object-fit: contain !important;
-  filter: drop-shadow(0 0 12px rgba(255, 215, 120, 0.45)) drop-shadow(0 0 25px rgba(216, 169, 87, 0.3)) !important;
-  animation: logoAestheticGlow 4s ease-in-out infinite alternate !important;
-}
-
-@keyframes logoAestheticGlow {
-  0% {
-    filter: drop-shadow(0 0 8px rgba(255, 215, 120, 0.3)) drop-shadow(0 0 18px rgba(216, 169, 87, 0.2)) !important;
-    transform: scale(0.99) !important;
-    opacity: 0.92 !important;
-  }
-  100% {
-    filter: drop-shadow(0 0 22px rgba(255, 225, 140, 0.75)) drop-shadow(0 0 45px rgba(216, 169, 87, 0.55)) !important;
-    transform: scale(1.02) !important;
-    opacity: 1 !important;
-  }
-}
-
-/* SHIFT TEXT DOWN BELOW ARCHWAY & LOGO */
-.intro-instruction {
-  bottom: 11% !important;
-}
-
-.pull-label {
-  font-family: 'Cinzel', 'Cormorant Garamond', serif !important;
-  font-size: clamp(14px, 3.8vw, 20px) !important;
-  letter-spacing: 2px !important;
-  color: #F7EBDC !important;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8) !important;
+  content: url('assets/hero/pn-hro-el-brass-bell-hanging-v01.png');
 }
 
 /* CUSTOM SCRATCH CARD SECTION INTEGRATION IN TEMPLATE09 */
@@ -445,4 +372,97 @@ body.borderless-android {
   font-weight: 600 !important;
   letter-spacing: 1px !important;
   margin-top: 2px !important;
+}
+
+/* ============================================================
+   GOLDEN BRASS BELL & CHAIN STYLING (SHINY GLOWING EFFECT)
+   ============================================================ */
+.bell-button,
+#ropeButton {
+  position: absolute !important;
+  top: -15px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  z-index: 25 !important;
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  cursor: pointer !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  padding: 0 !important;
+}
+
+/* Golden Chain Extending From Top of Screen */
+.chain-extension {
+  position: absolute;
+  top: -300px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 340px;
+  background-image: radial-gradient(circle at 50% 50%, #FFD700 25%, #B8860B 65%, transparent 95%);
+  background-size: 14px 20px;
+  background-repeat: repeat-y;
+  opacity: 0.9;
+  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
+  z-index: 1;
+}
+
+/* Hanging Brass Bell Image with Shiny Golden Glow */
+.bell-img,
+.rope-img {
+  width: auto !important;
+  max-width: 170px !important;
+  height: auto !important;
+  max-height: 290px !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 0 14px rgba(255, 215, 0, 0.85)) drop-shadow(0 0 28px rgba(216, 169, 87, 0.65)) !important;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease !important;
+  animation: bellShinyGlow 2.2s infinite alternate ease-in-out !important;
+  cursor: pointer !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+.bell-button:hover .bell-img,
+.bell-button:active .bell-img {
+  filter: drop-shadow(0 0 24px rgba(255, 223, 0, 1)) drop-shadow(0 0 40px rgba(255, 180, 0, 0.9)) !important;
+}
+
+/* Shiny Golden Glow Pulse Keyframe */
+@keyframes bellShinyGlow {
+  0% {
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.75)) drop-shadow(0 0 20px rgba(216, 169, 87, 0.5));
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(255, 240, 140, 0.98)) drop-shadow(0 0 35px rgba(255, 195, 50, 0.85));
+  }
+  100% {
+    filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.8)) drop-shadow(0 0 22px rgba(216, 169, 87, 0.55));
+  }
+}
+
+/* Bell Swing Animation on Tap */
+.bell-ring-swing {
+  animation: bellSwing 0.7s ease-in-out forwards !important;
+}
+
+@keyframes bellSwing {
+  0% { transform: translateX(-50%) rotate(0deg); }
+  20% { transform: translateX(-50%) rotate(10deg); }
+  40% { transform: translateX(-50%) rotate(-8deg); }
+  60% { transform: translateX(-50%) rotate(4deg); }
+  80% { transform: translateX(-50%) rotate(-2deg); }
+  100% { transform: translateX(-50%) rotate(0deg); }
+}
+
+/* Ring the bell to enter Label */
+.pull-label {
+  font-family: 'Cinzel', 'Cormorant Garamond', serif !important;
+  font-size: clamp(16px, 4vw, 22px) !important;
+  letter-spacing: 2px !important;
+  color: #FCE8B2 !important;
+  text-shadow: 0 0 12px rgba(255, 215, 0, 0.8), 0 2px 8px rgba(0, 0, 0, 0.9) !important;
 }
