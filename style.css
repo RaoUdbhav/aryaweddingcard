@@ -380,7 +380,7 @@ body.borderless-android {
 .bell-button,
 #ropeButton {
   position: absolute !important;
-  top: -15px !important;
+  top: -25px !important;
   left: 50% !important;
   transform: translateX(-50%) !important;
   z-index: 25 !important;
@@ -400,30 +400,31 @@ body.borderless-android {
   top: -300px;
   left: 50%;
   transform: translateX(-50%);
-  width: 14px;
-  height: 340px;
+  width: 10px;
+  height: 330px;
   background-image: radial-gradient(circle at 50% 50%, #FFD700 25%, #B8860B 65%, transparent 95%);
-  background-size: 14px 20px;
+  background-size: 10px 16px;
   background-repeat: repeat-y;
   opacity: 0.9;
-  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
+  filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.8));
   z-index: 1;
 }
 
-/* Hanging Brass Bell Image with Shiny Golden Glow */
+/* Hanging Brass Bell Image with High Clarity & Shiny Golden Glow */
 .bell-img,
 .rope-img {
   width: auto !important;
-  max-width: 170px !important;
+  max-width: 95px !important;
   height: auto !important;
-  max-height: 290px !important;
+  max-height: 165px !important;
   object-fit: contain !important;
-  filter: drop-shadow(0 0 14px rgba(255, 215, 0, 0.85)) drop-shadow(0 0 28px rgba(216, 169, 87, 0.65)) !important;
+  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.85)) drop-shadow(0 0 18px rgba(216, 169, 87, 0.6)) !important;
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease !important;
   animation: bellShinyGlow 2.2s infinite alternate ease-in-out !important;
   cursor: pointer !important;
   position: relative !important;
   z-index: 2 !important;
+  image-rendering: -webkit-optimize-contrast;
 }
 
 .bell-button:hover .bell-img,
