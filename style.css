@@ -219,14 +219,27 @@ body:not(.intro-active) .intro-monogram-logo {
   position: absolute !important;
   top: 50% !important;
   left: 50% !important;
-  transform: translate(-50%, -46%) !important;
+  transform: translate(-50%, -48%) !important;
   width: 78% !important;
   max-width: 320px !important;
   text-align: center !important;
   color: #3b1704 !important;
   z-index: 5 !important;
-  padding: 8px 12px !important;
+  padding: 4px 12px !important;
   box-sizing: border-box !important;
+}
+
+/* Sri Ganesha Golden Motif Artwork */
+.inv-ganesha-img {
+  width: auto !important;
+  max-width: 48px !important;
+  max-height: 52px !important;
+  height: auto !important;
+  object-fit: contain !important;
+  margin: 0 auto 4px !important;
+  display: block !important;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.2)) drop-shadow(0 0 8px rgba(216, 169, 87, 0.45)) !important;
+  image-rendering: -webkit-optimize-contrast;
 }
 
 /* Grandparents Blessing */
