@@ -44,7 +44,31 @@ body.borderless-android {
 }
 
 .rope-img {
-  content: url('assets/hero/pn-hro-el-rope-hemp-pull-x-v01.webp');
+  content: url('assets/hero/pn-hro-el-temple-bell-x-v01.png') !important;
+  width: clamp(150px, 36vw, 230px) !important;
+  height: auto !important;
+  max-height: 50vh !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 10px 28px rgba(0, 0, 0, 0.75)) !important;
+  transform-origin: top center !important;
+}
+
+.rope-button {
+  top: 0 !important;
+  transform: translateX(-50%) !important;
+  cursor: pointer !important;
+}
+
+.rope-button.is-ringing .rope-img {
+  animation: bellRing 0.7s ease-in-out infinite alternate !important;
+}
+
+@keyframes bellRing {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(8deg); }
+  50% { transform: rotate(-7deg); }
+  75% { transform: rotate(4deg); }
+  100% { transform: rotate(0deg); }
 }
 
 /* CUSTOM SCRATCH CARD SECTION INTEGRATION IN TEMPLATE09 */

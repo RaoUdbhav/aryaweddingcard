@@ -44,7 +44,7 @@ const A = {
   litBg: "assets/hero/pn-hro-bg-courtyard-lit-m-v03.webp",
   darkBgDesktop: "assets/hero/pn-hro-bg-courtyard-dark-D-v03.webp",
   litBgDesktop: "assets/hero/pn-hro-bg-courtyard-lit-d-v03.webp",
-  rope: "assets/hero/pn-hro-el-rope-hemp-pull-x-v01.webp",
+  rope: "assets/hero/pn-hro-el-temple-bell-x-v01.png",
   lotusClosed: "assets/hero/pn-rvl-btn-lotus-closed-x-v01.webp",
   lotusOpen: "assets/hero/pn-rvl-btn-lotus-open-x-v01.webp",
   lotusGlow: "assets/hero/pn-fx-ovl-lotus-glow-burst-x-v01.webp",
@@ -556,7 +556,11 @@ if (ropeButton) {
   });
 
   ropeButton.addEventListener("click", () => {
-    if (!triggered) triggerIntro();
+    if (!triggered) {
+      Sound.bell();
+      ropeButton.classList.add("is-ringing");
+      triggerIntro();
+    }
   });
 }
 
