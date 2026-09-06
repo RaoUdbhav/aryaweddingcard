@@ -107,11 +107,39 @@ body:not(.intro-active) .intro-monogram-logo {
   width: 320px;
   height: 160px;
   border-radius: 12px;
-  overflow: hidden;
+  overflow: visible !important;
   box-shadow: 0 10px 35px rgba(0, 0, 0, 0.8), 0 0 25px rgba(216, 169, 87, 0.35);
   border: 2px solid #D8A957;
   background: radial-gradient(circle, #241c0e 0%, #120e07 100%);
   margin-bottom: 18px;
+}
+
+/* Sparkling Star Burst Effect on Single Swipe */
+.scratch-sparkle {
+  position: absolute;
+  pointer-events: none;
+  z-index: 15;
+  width: 14px;
+  height: 14px;
+  background: radial-gradient(circle, #FFF9E6 20%, #FFD700 65%, transparent 90%);
+  border-radius: 50%;
+  box-shadow: 0 0 12px #FFD700, 0 0 22px #FFA500;
+  animation: sparkleBurst 0.85s ease-out forwards;
+}
+
+@keyframes sparkleBurst {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(0.3) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(var(--dx), var(--dy)) scale(1.5) rotate(180deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(var(--dx) * 1.4), calc(var(--dy) * 1.4 - 15px)) scale(0) rotate(360deg);
+  }
 }
 
 .scratch-reveal {

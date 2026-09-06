@@ -598,7 +598,7 @@ if (menuToggle && floatingMenu) {
   });
 }
 
-/* Custom Scratch Card Engine */
+/* Custom Scratch Card Engine — Single Swipe Sparkling Reveal */
 function initScratchCard() {
   const canvas = document.getElementById("scratchCanvas");
   if (!canvas) return;
@@ -639,51 +639,66 @@ function initScratchCard() {
     ctx.fillText('✨ SCRATCH HERE ✨', rect.width / 2, rect.height / 2);
   }
 
-  let isScratching = false, lastX = 0, lastY = 0;
+  let revealed = false;
 
-  function getCoords(e) {
+  function createSparkles(originX, originY) {
+    const rect = wrapper.getBoundingClientRect();
+    const count = 36;
+    for (let i = 0; i < count; i++) {
+      const sparkle = document.createElement("div");
+      sparkle.className = "scratch-sparkle";
+      
+      const angle = (Math.PI * 2 * i) / count + (Math.random() * 0.4 - 0.2);
+      const dist = 40 + Math.random() * 90;
+      const dx = Math.cos(angle) * dist;
+      const dy = Math.sin(angle) * dist;
+      
+      const startX = originX !== undefined ? originX : rect.width / 2;
+      const startY = originY !== undefined ? originY : rect.height / 2;
+      
+      sparkle.style.left = `${startX}px`;
+      sparkle.style.top = `${startY}px`;
+      sparkle.style.setProperty('--dx', `${dx}px`);
+      sparkle.style.setProperty('--dy', `${dy}px`);
+      
+      wrapper.appendChild(sparkle);
+      setTimeout(() => sparkle.remove(), 900);
+    }
+  }
+
+  function triggerOneSwipeReveal(e) {
+    if (revealed) return;
+    revealed = true;
+
     const rect = canvas.getBoundingClientRect();
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
     const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-    return { x: clientX - rect.left, y: clientY - rect.top };
-  }
+    const posX = clientX ? (clientX - rect.left) : (rect.width / 2);
+    const posY = clientY ? (clientY - rect.top) : (rect.height / 2);
 
-  function scratchLine(x1, y1, x2, y2) {
     ctx.save();
     ctx.globalCompositeOperation = 'destination-out';
-    ctx.lineWidth = 36;
+    ctx.lineWidth = 60;
     ctx.lineCap = 'round';
-    ctx.lineJoin = 'round';
     ctx.beginPath();
-    ctx.moveTo(x1, y1);
-    ctx.lineTo(x2, y2);
-    ctx.stroke();
+    ctx.arc(posX, posY, 40, 0, Math.PI * 2);
+    ctx.fill();
     ctx.restore();
+
+    createSparkles(posX, posY);
+    if (typeof Sound !== 'undefined' && Sound.lotus) Sound.lotus();
+
+    canvas.style.transition = 'opacity 0.6s ease-out';
+    canvas.style.opacity = '0';
+    setTimeout(() => {
+      canvas.style.display = 'none';
+    }, 650);
   }
 
-  function startScratch(e) {
-    isScratching = true;
-    const pos = getCoords(e);
-    lastX = pos.x; lastY = pos.y;
-    scratchLine(lastX, lastY, lastX, lastY);
-  }
-
-  function moveScratch(e) {
-    if (!isScratching) return;
-    const pos = getCoords(e);
-    scratchLine(lastX, lastY, pos.x, pos.y);
-    lastX = pos.x; lastY = pos.y;
-  }
-
-  function endScratch() { isScratching = false; }
-
-  canvas.addEventListener('mousedown', startScratch);
-  canvas.addEventListener('mousemove', moveScratch);
-  window.addEventListener('mouseup', endScratch);
-
-  canvas.addEventListener('touchstart', startScratch, { passive: true });
-  canvas.addEventListener('touchmove', moveScratch, { passive: true });
-  window.addEventListener('touchend', endScratch);
+  canvas.addEventListener('mousedown', triggerOneSwipeReveal);
+  canvas.addEventListener('mousemove', (e) => { if (e.buttons === 1) triggerOneSwipeReveal(e); });
+  canvas.addEventListener('touchstart', triggerOneSwipeReveal, { passive: true });
+  canvas.addEventListener('touchmove', triggerOneSwipeReveal, { passive: true });
 
   setCanvasSize();
 }
