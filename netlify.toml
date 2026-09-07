@@ -1,0 +1,21 @@
+﻿# Netlify Configuration File
+# Website: Arya & Siddhanshi's Wedding Invitation
+
+[build]
+  publish = "."
+  command = ""
+
+# Global Security & CORS Headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Access-Control-Allow-Origin = "*"
+
+# Asset Cache Control Optimization
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
