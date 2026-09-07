@@ -70,14 +70,17 @@ body:not(.intro-active) .intro-monogram-logo {
 /* CUSTOM SCRATCH CARD SECTION INTEGRATION IN TEMPLATE09 */
 .custom-scratch-section {
   position: relative;
-  background: radial-gradient(circle at 50% 50%, #290812 0%, #120307 100%);
-  padding: 60px 20px;
+  background-image: url('assets/invite/pn-scratch-bg-gold-mandalas-v01.webp') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  padding: 60px 20px 70px !important;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  border-top: 1px solid rgba(216, 169, 87, 0.3);
-  border-bottom: 1px solid rgba(216, 169, 87, 0.3);
+  border-top: 1px solid rgba(216, 169, 87, 0.4);
+  border-bottom: 1px solid rgba(216, 169, 87, 0.4);
 }
 
 .scratch-header {
@@ -85,21 +88,13 @@ body:not(.intro-active) .intro-monogram-logo {
   text-align: center;
 }
 
-.scratch-eyebrow {
-  font-family: 'Cinzel', serif;
-  font-size: 13px;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: #D8A957;
-  margin-bottom: 8px;
-}
-
 .scratch-title {
-  font-family: 'Cormorant Garamond', 'Playfair Display', serif;
-  font-size: clamp(22px, 5vw, 32px);
-  font-weight: 600;
-  color: #FFF8EA;
-  letter-spacing: 1px;
+  font-family: 'Cormorant Garamond', 'Playfair Display', serif !important;
+  font-size: clamp(24px, 5.5vw, 34px) !important;
+  font-weight: 700 !important;
+  color: #3B1704 !important;
+  letter-spacing: 1px !important;
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8), 0 0 12px rgba(255, 240, 200, 0.9) !important;
 }
 
 .scratch-card-wrapper {
