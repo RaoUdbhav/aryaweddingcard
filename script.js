@@ -111,7 +111,7 @@ const Sound = {
         osc.type = "sine";
         osc.frequency.value = freq;
         const start = t + i * 0.18;
-        g.gain.setValueAtTime(0, start);
+        g.gain.setValueAtTime(0.0001, start);
         g.gain.linearRampToValueAtTime(gain, start + 0.55);
         g.gain.exponentialRampToValueAtTime(0.0001, start + dur);
         osc.start(start);
@@ -132,7 +132,7 @@ const Sound = {
         const start = t + i * 0.1;
         osc.frequency.setValueAtTime(freq * 0.88, start);
         osc.frequency.exponentialRampToValueAtTime(freq, start + 0.28);
-        g.gain.setValueAtTime(0, start);
+        g.gain.setValueAtTime(0.0001, start);
         g.gain.linearRampToValueAtTime(gain, start + 0.18);
         g.gain.exponentialRampToValueAtTime(0.0001, start + dur);
         osc.start(start);
@@ -396,14 +396,15 @@ function renderStars() {
   const section = document.getElementById("events");
   if (!canvas || !section) return;
   const ctx = canvas.getContext("2d");
+
   function resize() {
-    canvas.width = section.offsetWidth;
-    canvas.height = section.offsetHeight;
+    canvas.width = Math.min(section.offsetWidth || window.innerWidth, 1200);
+    canvas.height = Math.min(section.offsetHeight || window.innerHeight, 1800);
   }
   resize();
   window.addEventListener("resize", resize, { passive: true });
 
-  const numStars = window.innerWidth < 768 ? 40 : 120;
+  const numStars = window.innerWidth < 768 ? 30 : 90;
   const stars = Array.from({ length: numStars }, () => ({
     x: Math.random(),
     y: Math.random(),
@@ -415,7 +416,10 @@ function renderStars() {
   }));
 
   let animId = null;
+  let isVisible = false;
+
   function draw(time) {
+    if (!isVisible) return;
     const t = time * 0.001;
     const w = canvas.width, h = canvas.height;
     ctx.clearRect(0, 0, w, h);
@@ -428,7 +432,29 @@ function renderStars() {
     }
     animId = requestAnimationFrame(draw);
   }
-  animId = requestAnimationFrame(draw);
+
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          if (!isVisible) {
+            isVisible = true;
+            animId = requestAnimationFrame(draw);
+          }
+        } else {
+          isVisible = false;
+          if (animId) {
+            cancelAnimationFrame(animId);
+            animId = null;
+          }
+        }
+      });
+    }, { rootMargin: "200px 0px" });
+    observer.observe(section);
+  } else {
+    isVisible = true;
+    animId = requestAnimationFrame(draw);
+  }
 }
 
 function renderBirds() {
@@ -459,7 +485,14 @@ function applyGrandparentsMode() {
 }
 
 function revealSite() {
-  if (introEl) introEl.classList.add("is-complete");
+  if (introEl) {
+    introEl.classList.add("is-complete");
+    setTimeout(() => {
+      if (introEl && introEl.classList.contains("is-complete")) {
+        introEl.style.display = "none";
+      }
+    }, 1400);
+  }
   document.body.classList.remove("intro-active");
   if (floatingMenu) floatingMenu.classList.add("is-visible");
   const inviteSection = document.getElementById("invite");
@@ -563,7 +596,8 @@ if (ropeButton) {
 }
 
 if (lotusButton) {
-  lotusButton.addEventListener("click", () => {
+  lotusButton.addEventListener("click", e => {
+    if (e && typeof e.preventDefault === "function") e.preventDefault();
     if (lotusButton.classList.contains("is-animating")) return;
     lotusButton.classList.add("is-animating");
     Sound.lotus();
@@ -586,6 +620,7 @@ if (menuToggle && floatingMenu) {
         triggered = false;
         if (floatingMenu) floatingMenu.classList.remove("is-visible", "is-open");
         if (introEl) {
+          introEl.style.display = "";
           introEl.classList.remove("is-complete");
           introEl.classList.add("is-lit", "show-names", "show-date", "show-venue", "show-lotus");
         }

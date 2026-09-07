@@ -723,3 +723,21 @@ body:not(.intro-active) #rsvp .rsvp-number-item:nth-child(4) {
   line-height: 1.35 !important;
   margin: 4px 0 !important;
 }
+
+/* ============================================================
+   iOS WEBKIT GPU & MEMORY PERFORMANCE OPTIMIZATIONS
+   ============================================================ */
+@media (max-width: 767px) {
+  /* Prevent WebKit GPU texture overflow on ultra-tall elements */
+  .invite-arch-frame {
+    height: 120svh !important;
+    max-height: 980px !important;
+    filter: drop-shadow(0 4px 14px rgba(216, 169, 87, 0.35)) !important;
+    transform: translateZ(0);
+  }
+
+  .lotus-button.is-open .lotus-icon-img {
+    filter: drop-shadow(0 8px 20px rgba(223, 162, 168, 0.6)) !important;
+  }
+}
+
