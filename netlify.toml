@@ -1,11 +1,7 @@
-﻿# Netlify Configuration File
-# Website: Arya & Siddhanshi's Wedding Invitation
-
 [build]
   publish = "."
   command = "echo 'Static site ready for deployment'"
 
-# Global Security & CORS Headers
 [[headers]]
   for = "/*"
   [headers.values]
@@ -14,7 +10,6 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Access-Control-Allow-Origin = "*"
 
-# Asset Cache Control Optimization
 [[headers]]
   for = "/assets/*"
   [headers.values]
