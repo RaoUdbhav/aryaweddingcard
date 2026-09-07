@@ -587,12 +587,19 @@ body:not(.intro-active) .intro-monogram-logo {
   width: 100% !important;
 }
 
-.rsvp-number-item {
+.rsvp-number-item,
+.rsvp-number-item a,
+.rsvp-phone-link,
+a[href^="tel"],
+a[href*="tel:"] {
   font-family: 'Cormorant Garamond', 'EB Garamond', 'Playfair Display', serif !important;
   font-size: clamp(24px, 6.5vw, 34px) !important;
   font-weight: 600 !important;
   font-style: italic !important;
   color: #F5CE76 !important;
+  -webkit-text-fill-color: #F5CE76 !important;
+  text-decoration: none !important;
+  border-bottom: none !important;
   letter-spacing: 2.5px !important;
   margin: 0 !important;
   line-height: 1.35 !important;

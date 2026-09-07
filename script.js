@@ -642,13 +642,15 @@ function initScratchCard() {
 
   function setCanvasSize() {
     const rect = wrapper.getBoundingClientRect();
-    const dpr = window.devicePixelRatio || 1;
-    canvas.width = rect.width * dpr;
-    canvas.height = rect.height * dpr;
+    const w = rect.width > 0 ? rect.width : 320;
+    const h = rect.height > 0 ? rect.height : 160;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
     ctx.scale(dpr, dpr);
 
     // Champagne / Gold Metallic Foil Coating
-    const gradient = ctx.createLinearGradient(0, 0, rect.width, rect.height);
+    const gradient = ctx.createLinearGradient(0, 0, w, h);
     gradient.addColorStop(0, '#D8A957');
     gradient.addColorStop(0.3, '#FFF3CC');
     gradient.addColorStop(0.5, '#C59338');
@@ -656,13 +658,13 @@ function initScratchCard() {
     gradient.addColorStop(1, '#996F1D');
 
     ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, rect.width, rect.height);
+    ctx.fillRect(0, 0, w, h);
 
     // Subtle grain texture
     ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
-    for (let i = 0; i < 500; i++) {
-      const x = Math.random() * rect.width;
-      const y = Math.random() * rect.height;
+    for (let i = 0; i < 400; i++) {
+      const x = Math.random() * w;
+      const y = Math.random() * h;
       ctx.fillRect(x, y, 1.5, 1.5);
     }
 
@@ -671,7 +673,7 @@ function initScratchCard() {
     ctx.font = 'bold 13px "Cinzel", serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText('✨ SCRATCH HERE ✨', rect.width / 2, rect.height / 2);
+    ctx.fillText('✨ SCRATCH HERE ✨', w / 2, h / 2);
   }
 
   let revealed = false;
