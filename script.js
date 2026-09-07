@@ -719,9 +719,38 @@ function initRSVPObserver() {
   observer.observe(rsvpSec);
 }
 
+/* Meet the Couple — Tree Branch Parting Animation */
+function initCoupleTreeAnimation() {
+  const coupleSec = document.getElementById("couple");
+  const treeLeft = document.getElementById("cplTreeLeft");
+  const treeRight = document.getElementById("cplTreeRight");
+  if (!coupleSec || !treeLeft || !treeRight) return;
+
+  let ticking = false;
+  window.addEventListener("scroll", () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const rect = coupleSec.getBoundingClientRect();
+      const winH = window.innerHeight;
+      if (rect.top < winH && rect.bottom > 0) {
+        const progress = Math.max(0, Math.min(1, (winH - rect.top) / (winH * 0.8)));
+        const shiftPercent = (progress * 70).toFixed(1);
+        treeLeft.style.transform = `translate3d(-${shiftPercent}%, 0, 0)`;
+        treeRight.style.transform = `translate3d(${shiftPercent}%, 0, 0)`;
+      } else if (rect.top >= winH) {
+        treeLeft.style.transform = `translate3d(0, 0, 0)`;
+        treeRight.style.transform = `translate3d(0, 0, 0)`;
+      }
+      ticking = false;
+    });
+  }, { passive: true });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   hydrate();
   Sound.init();
   initScratchCard();
   initRSVPObserver();
+  initCoupleTreeAnimation();
 });
