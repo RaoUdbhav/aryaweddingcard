@@ -386,12 +386,12 @@ body:not(.intro-active) .intro-monogram-logo {
   display: none !important;
 }
 
-/* Farman Scroll Motif Image Scaling (Seamless Parchment Blending & Larger Fit) */
+/* Farman Scroll Motif Image Scaling (Seamless Parchment Blending & Exact 145px Fit) */
 .farman-motif {
+  width: 145px !important;
+  height: 145px !important;
   max-width: 145px !important;
   max-height: 145px !important;
-  width: auto !important;
-  height: auto !important;
   object-fit: contain !important;
   margin: 0 auto 6px !important;
   display: block !important;
