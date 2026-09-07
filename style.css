@@ -677,3 +677,48 @@ body:not(.intro-active) #rsvp .rsvp-number-item:nth-child(4) {
 .cpl-tree--right {
   right: 0 !important;
 }
+
+/* Meet the Couple - Circular AS Emblem Logo & Best Compliments */
+.cpl-emblem-wrap {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin: 10px auto 22px !important;
+  width: 100% !important;
+}
+
+.cpl-emblem-img {
+  width: auto !important;
+  max-width: clamp(180px, 50vw, 250px) !important;
+  height: auto !important;
+  max-height: 250px !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25)) drop-shadow(0 0 15px rgba(216, 169, 87, 0.4)) !important;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+.cpl-compliments-block {
+  text-align: center !important;
+  margin-top: 10px !important;
+  width: 100% !important;
+}
+
+.cpl-compliments-title {
+  font-family: 'Cinzel', 'Cormorant Garamond', serif !important;
+  font-size: clamp(14px, 3.8vw, 18px) !important;
+  font-weight: 600 !important;
+  letter-spacing: 2.5px !important;
+  color: #703f13 !important;
+  text-transform: uppercase !important;
+  margin-bottom: 10px !important;
+}
+
+.cpl-compliments-names p {
+  font-family: 'Cormorant Garamond', 'EB Garamond', 'Playfair Display', serif !important;
+  font-size: clamp(20px, 5.2vw, 26px) !important;
+  font-weight: 700 !important;
+  color: #3b1704 !important;
+  letter-spacing: 1px !important;
+  line-height: 1.35 !important;
+  margin: 4px 0 !important;
+}
