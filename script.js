@@ -33,10 +33,10 @@ function farmanNameFallbackClass(e) {
 }
 
 const EVENTS = [
-  { id: "baraat", icon: "assets/event/pn-evt-ico-ghurchari-horse-v01.png", name: "Baraat", date: "15th January 2027", time: "2:00 PM", venue: "From Residence", note: "The grand royal procession", map: "" },
-  { id: "jaimala", icon: "assets/event/pn-evt-ico-jaimala-couple-arch-v01.png", name: "Jaimala", date: "15th January 2027", time: "4:30 PM", venue: "Shree Jee Vilas, Sonipat", note: "", map: "" },
-  { id: "mangal-phere", icon: "assets/event/pn-evt-ico-mangal-phere-havankund-v01.png", name: "Mangal Phere", date: "15th January 2027", time: "5:30 PM", venue: "Shree Jee Vilas, Sonipat", note: "", map: "" },
-  { id: "dinner", icon: "assets/event/pn-evt-ico-dinner-thali-v01.png", name: "Dinner", date: "15th January 2027", time: "7:30 PM Onwards", venue: "Shree Jee Vilas, Sonipat", note: "Bold spices, complex aromas and vibrant flavours", map: "" }
+  { id: "baraat", icon: "assets/event/pn-evt-ico-ghurchari-horse-v01.png", name: "Baraat", date: "15 January 2027", time: "2:00 PM", venue: "From Residence", note: "The grand royal procession", map: "" },
+  { id: "jaimala", icon: "assets/event/pn-evt-ico-jaimala-couple-arch-v01.png", name: "Jaimala", date: "15 January 2027", time: "4:30 PM", venue: "Shree Jee Vilas, Sonipat", note: "", map: "" },
+  { id: "mangal-phere", icon: "assets/event/pn-evt-ico-mangal-phere-havankund-v01.png", name: "Mangal Phere", date: "15 January 2027", time: "5:30 PM", venue: "Shree Jee Vilas, Sonipat", note: "", map: "" },
+  { id: "dinner", icon: "assets/event/pn-evt-ico-dinner-thali-v01.png", name: "Dinner", date: "15 January 2027", time: "7:30 PM Onwards", venue: "Shree Jee Vilas, Sonipat", note: "Bold spices, complex aromas and vibrant flavours", map: "" }
 ];
 
 const A = {
