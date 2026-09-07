@@ -703,8 +703,25 @@ function initScratchCard() {
   setCanvasSize();
 }
 
+/* Floating Animation Scroll Observer for RSVP Section */
+function initRSVPObserver() {
+  const rsvpSec = document.getElementById("rsvp");
+  if (!rsvpSec) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        rsvpSec.classList.add("is-in-view");
+      }
+    });
+  }, { threshold: 0.15 });
+
+  observer.observe(rsvpSec);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   hydrate();
   Sound.init();
   initScratchCard();
+  initRSVPObserver();
 });
