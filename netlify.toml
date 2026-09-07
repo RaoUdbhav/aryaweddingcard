@@ -3,7 +3,7 @@
 
 [build]
   publish = "."
-  command = ""
+  command = "echo 'Static site ready for deployment'"
 
 # Global Security & CORS Headers
 [[headers]]
