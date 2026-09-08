@@ -438,7 +438,6 @@ body:not(.intro-active) .intro-monogram-logo {
   width: 100% !important;
 }
 
-#introNames .word,
 #introNames .intro-name-part {
   display: block !important;
   width: 100% !important;
@@ -449,6 +448,12 @@ body:not(.intro-active) .intro-monogram-logo {
   line-height: 1.05 !important;
 }
 
+#introNames .intro-name-part:first-child {
+  padding-bottom: 6px !important;
+}
+
+#introNames .intro-weds-part,
+#introNames .word.intro-weds-part,
 .intro-weds-part {
   display: block !important;
   width: 100% !important;
@@ -456,16 +461,16 @@ body:not(.intro-active) .intro-monogram-logo {
   clear: both !important;
   float: none !important;
   font-family: 'Cinzel', 'Cormorant Garamond', serif !important;
-  font-size: clamp(20px, 4.8vw, 32px) !important;
+  font-size: clamp(20px, 4.8vw, 30px) !important;
   font-weight: 500 !important;
   color: #D8A957 !important;
   font-style: italic !important;
   line-height: 1 !important;
   letter-spacing: 3px !important;
   text-transform: uppercase !important;
-  /* Descender of 'y' in Arya hangs down ~16px: margin-top of 26px gives ~11px clear gap from 'y' tip to WEDS, matching 12px margin-bottom to Siddhanshi */
-  margin-top: clamp(26px, 6.5vw, 38px) !important;
-  margin-bottom: clamp(12px, 3vw, 18px) !important;
+  /* Clears the descending tail of 'y' in Arya with generous space and keeps Weds visually equidistant from Arya and Siddhanshi */
+  margin-top: clamp(32px, 8vw, 44px) !important;
+  margin-bottom: clamp(18px, 4.5vw, 24px) !important;
 }
 
 /* Hide Date & Venue on Opening Intro Page */
