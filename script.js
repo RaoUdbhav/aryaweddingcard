@@ -642,8 +642,8 @@ function initScratchCard() {
 
   function setCanvasSize() {
     const rect = wrapper.getBoundingClientRect();
-    const w = rect.width > 0 ? rect.width : 320;
-    const h = rect.height > 0 ? rect.height : 160;
+    const w = rect.width > 0 ? rect.width : 340;
+    const h = rect.height > 0 ? rect.height : 180;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     canvas.width = w * dpr;
     canvas.height = h * dpr;
