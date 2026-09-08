@@ -615,21 +615,8 @@ if (menuToggle && floatingMenu) {
   });
 
   document.querySelectorAll(".menu-link").forEach(link => {
-    link.addEventListener("click", e => {
-      if (link.id === "menuHome") {
-        e.preventDefault();
-        triggered = false;
-        if (floatingMenu) floatingMenu.classList.remove("is-visible", "is-open");
-        if (introEl) {
-          introEl.style.display = "";
-          introEl.classList.remove("is-complete");
-          introEl.classList.add("is-lit", "show-names", "show-date", "show-venue", "show-lotus");
-        }
-        document.body.classList.add("intro-active");
-        window.scrollTo({ top: 0, behavior: "instant" });
-      } else {
-        floatingMenu.classList.remove("is-open");
-      }
+    link.addEventListener("click", () => {
+      floatingMenu.classList.remove("is-open");
     });
   });
 }

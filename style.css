@@ -814,16 +814,10 @@ body:not(.intro-active) #rsvp .rsvp-contact-row:nth-child(2) {
   animation: gentleFloatNum 4s ease-in-out infinite 1.6s alternate !important;
 }
 
-#rsvp.is-in-view .rsvp-contact-row:nth-child(3),
-body:not(.intro-active) #rsvp .rsvp-contact-row:nth-child(3) {
-  transition-delay: 0.7s !important;
-  animation: gentleFloatNum 4s ease-in-out infinite 1.8s alternate !important;
-}
-
 #rsvp.is-in-view .rsvp-hashtag,
 body:not(.intro-active) #rsvp .rsvp-hashtag {
-  transition-delay: 0.9s !important;
-  animation: gentleFloatNum 4s ease-in-out infinite 2.0s alternate !important;
+  transition-delay: 0.7s !important;
+  animation: gentleFloatNum 4s ease-in-out infinite 1.8s alternate !important;
 }
 
 @keyframes gentleFloatTitle {
