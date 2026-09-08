@@ -33,10 +33,10 @@ function farmanNameFallbackClass(e) {
 }
 
 const EVENTS = [
-  { id: "baraat", icon: "assets/event/pn-evt-ico-ghurchari-horse-v01.png", name: "Baraat", date: "15 January 2027", time: "2:00 PM", venue: "From Residence", note: "The grand royal procession", map: "" },
-  { id: "jaimala", icon: "assets/event/pn-evt-ico-jaimala-couple-arch-v01.png", name: "Jaimala", date: "15 January 2027", time: "4:30 PM", venue: "Shree Jee Vilas, Sonipat", note: "", map: "" },
-  { id: "mangal-phere", icon: "assets/event/pn-evt-ico-mangal-phere-havankund-v01.png", name: "Mangal Phere", date: "15 January 2027", time: "5:30 PM", venue: "Shree Jee Vilas, Sonipat", note: "", map: "" },
-  { id: "dinner", icon: "assets/event/pn-evt-ico-dinner-thali-v01.png", name: "Dinner", date: "15 January 2027", time: "7:30 PM Onwards", venue: "Shree Jee Vilas, Sonipat", note: "Bold spices, complex aromas and vibrant flavours", map: "" }
+  { id: "baraat", icon: "assets/event/pn-evt-ico-ghurchari-horse-v01.png", name: "Baraat", date: "", time: "2:00 PM", venue: "From Residence", note: "The grand royal procession", map: "" },
+  { id: "jaimala", icon: "assets/event/pn-evt-ico-jaimala-couple-arch-v01.png", name: "Jaimala", date: "", time: "4:30 PM", venue: "", note: "", map: "" },
+  { id: "mangal-phere", icon: "assets/event/pn-evt-ico-mangal-phere-havankund-v01.png", name: "Mangal Phere", date: "", time: "5:30 PM", venue: "", note: "", map: "" },
+  { id: "dinner", icon: "assets/event/pn-evt-ico-dinner-thali-v01.png", name: "Dinner", date: "", time: "7:30 PM Onwards", venue: "", note: "Bold spices, complex aromas and vibrant flavours", map: "" }
 ];
 
 const A = {
@@ -354,11 +354,12 @@ function renderEvents() {
           <img class="farman-motif" src="${evt.icon}" alt="${evt.name} motif" decoding="async">
           <h3 class="farman-name">${evt.name}</h3>
           <div class="farman-rule" aria-hidden="true"></div>
+          ${(evt.date || evt.time) ? `
           <p class="farman-datetime">
-            <span class="farman-date-line">${evt.date}</span>
-            <span class="farman-time-line">${evt.time}</span>
-          </p>
-          <p class="farman-venue">${evt.venue}</p>
+            ${evt.date ? `<span class="farman-date-line">${evt.date}</span>` : ""}
+            ${evt.time ? `<span class="farman-time-line">${evt.time}</span>` : ""}
+          </p>` : ""}
+          ${evt.venue ? `<p class="farman-venue">${evt.venue}</p>` : ""}
           ${evt.note ? `<p class="farman-note">${evt.note}</p>` : ""}
           ${evt.map ? `<a class="farman-map" href="${evt.map}" target="_blank" rel="noopener noreferrer">📍 Open in Maps</a>` : ""}
         </div>
