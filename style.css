@@ -592,7 +592,7 @@ body:not(.intro-active) .intro-monogram-logo {
 
 .rsvp-contact-row {
   display: grid !important;
-  grid-template-columns: 1fr auto 1fr !important;
+  grid-template-columns: 1.15fr auto 1fr !important;
   align-items: center !important;
   width: 100% !important;
   max-width: 340px !important;
@@ -601,12 +601,12 @@ body:not(.intro-active) .intro-monogram-logo {
 
 .rsvp-contact-name {
   font-family: 'Cormorant Garamond', 'EB Garamond', 'Playfair Display', serif !important;
-  font-size: clamp(19px, 5vw, 25px) !important;
+  font-size: clamp(18px, 4.8vw, 24px) !important;
   font-weight: 600 !important;
   font-style: italic !important;
   color: #F8D785 !important;
-  text-align: right !important;
-  letter-spacing: 1px !important;
+  text-align: left !important;
+  letter-spacing: 0.6px !important;
   white-space: nowrap !important;
   text-shadow: 0 0 14px rgba(245, 206, 118, 0.7), 0 2px 8px rgba(0, 0, 0, 0.9) !important;
 }
@@ -623,7 +623,7 @@ body:not(.intro-active) .intro-monogram-logo {
 a[href^="tel"],
 a[href*="tel:"] {
   font-family: 'Cormorant Garamond', 'EB Garamond', 'Playfair Display', serif !important;
-  font-size: clamp(19px, 5vw, 25px) !important;
+  font-size: clamp(18px, 4.8vw, 24px) !important;
   font-weight: 600 !important;
   font-style: italic !important;
   color: #F5CE76 !important;
@@ -637,13 +637,21 @@ a[href*="tel:"] {
 }
 
 .rsvp-hashtag {
-  font-family: 'Cinzel', 'Cormorant Garamond', serif !important;
-  font-size: clamp(17px, 4.4vw, 23px) !important;
-  font-weight: 600 !important;
-  letter-spacing: 2px !important;
-  color: #F8D785 !important;
-  margin-top: 24px !important;
+  position: absolute !important;
+  bottom: calc(clamp(20px, 4.5svh, 36px) + env(safe-area-inset-bottom, 0px)) !important;
+  left: 0 !important;
+  right: 0 !important;
+  margin: 0 auto !important;
+  width: 90% !important;
+  max-width: 360px !important;
   text-align: center !important;
+  z-index: 15 !important;
+  pointer-events: none !important;
+  font-family: 'Cinzel', 'Cormorant Garamond', serif !important;
+  font-size: clamp(16px, 4.2vw, 22px) !important;
+  font-weight: 600 !important;
+  letter-spacing: 2.5px !important;
+  color: #F8D785 !important;
   text-shadow: 0 0 18px rgba(248, 215, 133, 0.8), 0 0 32px rgba(216, 169, 87, 0.5), 0 2px 8px rgba(0, 0, 0, 0.95) !important;
 }
 
