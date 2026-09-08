@@ -554,6 +554,35 @@ body:not(.intro-active) .intro-monogram-logo {
   text-shadow: 0 0 12px rgba(255, 215, 0, 0.8), 0 2px 8px rgba(0, 0, 0, 0.9) !important;
 }
 
+/* Tap the lotus to enter CTA Label — High Contrast Elegant Royal Color */
+.lotus-cta-label {
+  color: #4A121D !important;
+  font-weight: 700 !important;
+  text-shadow: 0 0 10px rgba(255, 242, 209, 0.9), 0 0 18px rgba(255, 230, 160, 0.6), 0 1px 2px rgba(255, 255, 255, 0.8) !important;
+}
+
+.intro.show-lotus:not(.is-complete) .lotus-button:not(.is-open) ~ .lotus-cta-label {
+  opacity: 1 !important;
+  animation: lotusGentleBlink 1.8s ease-in-out 0.8s infinite !important;
+}
+
+@keyframes lotusGentleBlink {
+  0%, 100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(-2px);
+  }
+}
+
+.lotus-button.is-open ~ .lotus-cta-label {
+  opacity: 0 !important;
+  animation: none !important;
+  transition: opacity 0.3s ease !important;
+}
+
 /* Sanskrit Shloka in Events Section (Golden Engraved Calligraphy - Equidistant Layout) */
 .evt-header {
   margin-top: -35px !important;
