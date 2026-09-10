@@ -1276,10 +1276,10 @@ body:not(.intro-active) #rsvp .rsvp-hashtag {
 /* Heading: Shree Jee Vilas */
 #things .ttk-heading {
   font-family: 'Rastanty Cortez', 'Parisienne', cursive !important;
-  font-size: clamp(3.5rem, 10.5vw, 4.8rem) !important;
-  font-weight: 400 !important;
+  font-size: clamp(4.2rem, 13vw, 5.8rem) !important;
+  font-weight: 700 !important;
   color: #4A0E18 !important;
-  line-height: 1.2 !important;
+  line-height: 1.18 !important;
   margin: 4px 0 8px !important;
   text-shadow: 0 1px 3px rgba(255, 255, 255, 0.95), 0 0 18px rgba(255, 245, 220, 0.9) !important;
 }
