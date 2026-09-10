@@ -523,9 +523,9 @@ body:not(.intro-active) .intro-monogram-logo {
 }
 
 .farman-time-line {
-  font-size: 14px !important;
-  font-weight: 600 !important;
-  letter-spacing: 1px !important;
+  font-size: clamp(19px, 4.8vw, 22px) !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.2px !important;
   margin-top: 2px !important;
 }
 
