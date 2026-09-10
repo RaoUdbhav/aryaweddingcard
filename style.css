@@ -16,13 +16,15 @@
 
 /* Force borderless edge-to-edge layout for Android Chrome & Mobile Web */
 html, body {
-  width: 100vw;
+  width: 100%;
+  max-width: 100%;
   min-height: 100vh;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
   background-color: #1D050C;
   -webkit-tap-highlight-color: transparent;
+  -webkit-overflow-scrolling: touch;
 }
 
 body.borderless-android {
@@ -643,16 +645,26 @@ body:not(.intro-active) .intro-monogram-logo {
 
 /* Bell Swing Animation on Tap */
 .bell-ring-swing {
+  -webkit-animation: bellSwing 0.7s ease-in-out forwards !important;
   animation: bellSwing 0.7s ease-in-out forwards !important;
 }
 
+@-webkit-keyframes bellSwing {
+  0%   { -webkit-transform: translateX(-50%) rotate(0deg);  transform: translateX(-50%) rotate(0deg); }
+  20%  { -webkit-transform: translateX(-50%) rotate(10deg); transform: translateX(-50%) rotate(10deg); }
+  40%  { -webkit-transform: translateX(-50%) rotate(-8deg); transform: translateX(-50%) rotate(-8deg); }
+  60%  { -webkit-transform: translateX(-50%) rotate(4deg);  transform: translateX(-50%) rotate(4deg); }
+  80%  { -webkit-transform: translateX(-50%) rotate(-2deg); transform: translateX(-50%) rotate(-2deg); }
+  100% { -webkit-transform: translateX(-50%) rotate(0deg);  transform: translateX(-50%) rotate(0deg); }
+}
+
 @keyframes bellSwing {
-  0% { transform: translateX(-50%) rotate(0deg); }
-  20% { transform: translateX(-50%) rotate(10deg); }
-  40% { transform: translateX(-50%) rotate(-8deg); }
-  60% { transform: translateX(-50%) rotate(4deg); }
-  80% { transform: translateX(-50%) rotate(-2deg); }
-  100% { transform: translateX(-50%) rotate(0deg); }
+  0%   { -webkit-transform: translateX(-50%) rotate(0deg);  transform: translateX(-50%) rotate(0deg); }
+  20%  { -webkit-transform: translateX(-50%) rotate(10deg); transform: translateX(-50%) rotate(10deg); }
+  40%  { -webkit-transform: translateX(-50%) rotate(-8deg); transform: translateX(-50%) rotate(-8deg); }
+  60%  { -webkit-transform: translateX(-50%) rotate(4deg);  transform: translateX(-50%) rotate(4deg); }
+  80%  { -webkit-transform: translateX(-50%) rotate(-2deg); transform: translateX(-50%) rotate(-2deg); }
+  100% { -webkit-transform: translateX(-50%) rotate(0deg);  transform: translateX(-50%) rotate(0deg); }
 }
 
 /* Ring the bell to enter Label */
@@ -678,16 +690,32 @@ body:not(.intro-active) .intro-monogram-logo {
 
 .intro.show-lotus:not(.is-complete) .lotus-button:not(.is-open) ~ .lotus-cta-label {
   opacity: 1 !important;
+  -webkit-animation: lotusGentleBlink 1.8s ease-in-out 0.8s infinite !important;
   animation: lotusGentleBlink 1.8s ease-in-out 0.8s infinite !important;
+}
+
+@-webkit-keyframes lotusGentleBlink {
+  0%, 100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.88;
+    -webkit-transform: translateY(-2px);
+    transform: translateY(-2px);
+  }
 }
 
 @keyframes lotusGentleBlink {
   0%, 100% {
     opacity: 1;
+    -webkit-transform: translateY(0);
     transform: translateY(0);
   }
   50% {
     opacity: 0.88;
+    -webkit-transform: translateY(-2px);
     transform: translateY(-2px);
   }
 }
@@ -808,23 +836,28 @@ body:not(.intro-active) .intro-monogram-logo {
 
 /* Active engraving animation triggered on scroll */
 .evt-shloka-inner.is-engraving .evt-shloka-img {
+  -webkit-animation: engraveBaseProgress 3.4s linear forwards !important;
   animation: engraveBaseProgress 3.4s linear forwards !important;
 }
 
 .evt-shloka-inner.is-engraving .evt-shloka-glow {
+  -webkit-animation: engraveGlowProgress 3.4s linear forwards !important;
   animation: engraveGlowProgress 3.4s linear forwards !important;
 }
 
 .evt-shloka-inner.is-engraving .evt-shloka-chisel {
+  -webkit-animation: engraveChiselMotion 3.4s linear forwards !important;
   animation: engraveChiselMotion 3.4s linear forwards !important;
 }
 
 .evt-shloka-inner.is-engraving .evt-shloka-sheen {
+  -webkit-animation: engraveFinalSheen 1.2s ease-out 3.4s forwards !important;
   animation: engraveFinalSheen 1.2s ease-out 3.4s forwards !important;
 }
 
 /* Completed engraved state (permanent) */
 .evt-shloka-inner.is-engraved .evt-shloka-img {
+  -webkit-clip-path: inset(0 0 0 0) !important;
   clip-path: inset(0 0 0 0) !important;
 }
 .evt-shloka-inner.is-engraved .evt-shloka-glow,
@@ -832,45 +865,86 @@ body:not(.intro-active) .intro-monogram-logo {
   display: none !important;
 }
 
+@-webkit-keyframes engraveBaseProgress {
+  0%   { -webkit-clip-path: inset(0 0 100% 0); clip-path: inset(0 0 100% 0); }
+  12%  { -webkit-clip-path: inset(0 0 86% 0);  clip-path: inset(0 0 86% 0); }
+  15%  { -webkit-clip-path: inset(0 0 86% 0);  clip-path: inset(0 0 86% 0); }
+  24%  { -webkit-clip-path: inset(0 0 74% 0);  clip-path: inset(0 0 74% 0); }
+  27%  { -webkit-clip-path: inset(0 0 74% 0);  clip-path: inset(0 0 74% 0); }
+  36%  { -webkit-clip-path: inset(0 0 63% 0);  clip-path: inset(0 0 63% 0); }
+  39%  { -webkit-clip-path: inset(0 0 63% 0);  clip-path: inset(0 0 63% 0); }
+  48%  { -webkit-clip-path: inset(0 0 52% 0);  clip-path: inset(0 0 52% 0); }
+  51%  { -webkit-clip-path: inset(0 0 52% 0);  clip-path: inset(0 0 52% 0); }
+  60%  { -webkit-clip-path: inset(0 0 41% 0);  clip-path: inset(0 0 41% 0); }
+  63%  { -webkit-clip-path: inset(0 0 41% 0);  clip-path: inset(0 0 41% 0); }
+  72%  { -webkit-clip-path: inset(0 0 27% 0);  clip-path: inset(0 0 27% 0); }
+  75%  { -webkit-clip-path: inset(0 0 27% 0);  clip-path: inset(0 0 27% 0); }
+  84%  { -webkit-clip-path: inset(0 0 15% 0);  clip-path: inset(0 0 15% 0); }
+  87%  { -webkit-clip-path: inset(0 0 15% 0);  clip-path: inset(0 0 15% 0); }
+  98%  { -webkit-clip-path: inset(0 0 0% 0);   clip-path: inset(0 0 0% 0); }
+  100% { -webkit-clip-path: inset(0 0 0% 0);   clip-path: inset(0 0 0% 0); }
+}
+
 @keyframes engraveBaseProgress {
-  0%   { clip-path: inset(0 0 100% 0); }
-  12%  { clip-path: inset(0 0 86% 0); }
-  15%  { clip-path: inset(0 0 86% 0); }
-  24%  { clip-path: inset(0 0 74% 0); }
-  27%  { clip-path: inset(0 0 74% 0); }
-  36%  { clip-path: inset(0 0 63% 0); }
-  39%  { clip-path: inset(0 0 63% 0); }
-  48%  { clip-path: inset(0 0 52% 0); }
-  51%  { clip-path: inset(0 0 52% 0); }
-  60%  { clip-path: inset(0 0 41% 0); }
-  63%  { clip-path: inset(0 0 41% 0); }
-  72%  { clip-path: inset(0 0 27% 0); }
-  75%  { clip-path: inset(0 0 27% 0); }
-  84%  { clip-path: inset(0 0 15% 0); }
-  87%  { clip-path: inset(0 0 15% 0); }
-  98%  { clip-path: inset(0 0 0% 0); }
-  100% { clip-path: inset(0 0 0% 0); }
+  0%   { -webkit-clip-path: inset(0 0 100% 0); clip-path: inset(0 0 100% 0); }
+  12%  { -webkit-clip-path: inset(0 0 86% 0);  clip-path: inset(0 0 86% 0); }
+  15%  { -webkit-clip-path: inset(0 0 86% 0);  clip-path: inset(0 0 86% 0); }
+  24%  { -webkit-clip-path: inset(0 0 74% 0);  clip-path: inset(0 0 74% 0); }
+  27%  { -webkit-clip-path: inset(0 0 74% 0);  clip-path: inset(0 0 74% 0); }
+  36%  { -webkit-clip-path: inset(0 0 63% 0);  clip-path: inset(0 0 63% 0); }
+  39%  { -webkit-clip-path: inset(0 0 63% 0);  clip-path: inset(0 0 63% 0); }
+  48%  { -webkit-clip-path: inset(0 0 52% 0);  clip-path: inset(0 0 52% 0); }
+  51%  { -webkit-clip-path: inset(0 0 52% 0);  clip-path: inset(0 0 52% 0); }
+  60%  { -webkit-clip-path: inset(0 0 41% 0);  clip-path: inset(0 0 41% 0); }
+  63%  { -webkit-clip-path: inset(0 0 41% 0);  clip-path: inset(0 0 41% 0); }
+  72%  { -webkit-clip-path: inset(0 0 27% 0);  clip-path: inset(0 0 27% 0); }
+  75%  { -webkit-clip-path: inset(0 0 27% 0);  clip-path: inset(0 0 27% 0); }
+  84%  { -webkit-clip-path: inset(0 0 15% 0);  clip-path: inset(0 0 15% 0); }
+  87%  { -webkit-clip-path: inset(0 0 15% 0);  clip-path: inset(0 0 15% 0); }
+  98%  { -webkit-clip-path: inset(0 0 0% 0);   clip-path: inset(0 0 0% 0); }
+  100% { -webkit-clip-path: inset(0 0 0% 0);   clip-path: inset(0 0 0% 0); }
+}
+
+@-webkit-keyframes engraveGlowProgress {
+  0%   { opacity: 0;   -webkit-clip-path: inset(0 0 100% 0); clip-path: inset(0 0 100% 0); }
+  2%   { opacity: 1;   -webkit-clip-path: inset(0 0 95% 0);  clip-path: inset(0 0 95% 0); }
+  12%  { opacity: 1;   -webkit-clip-path: inset(0 0 86% 0);  clip-path: inset(0 0 86% 0); }
+  15%  { opacity: 0.6; -webkit-clip-path: inset(0 0 86% 0);  clip-path: inset(0 0 86% 0); }
+  24%  { opacity: 1;   -webkit-clip-path: inset(10% 0 74% 0); clip-path: inset(10% 0 74% 0); }
+  27%  { opacity: 0.6; -webkit-clip-path: inset(12% 0 74% 0); clip-path: inset(12% 0 74% 0); }
+  36%  { opacity: 1;   -webkit-clip-path: inset(22% 0 63% 0); clip-path: inset(22% 0 63% 0); }
+  39%  { opacity: 0.6; -webkit-clip-path: inset(24% 0 63% 0); clip-path: inset(24% 0 63% 0); }
+  48%  { opacity: 1;   -webkit-clip-path: inset(33% 0 52% 0); clip-path: inset(33% 0 52% 0); }
+  51%  { opacity: 0.6; -webkit-clip-path: inset(35% 0 52% 0); clip-path: inset(35% 0 52% 0); }
+  60%  { opacity: 1;   -webkit-clip-path: inset(44% 0 41% 0); clip-path: inset(44% 0 41% 0); }
+  63%  { opacity: 0.6; -webkit-clip-path: inset(46% 0 41% 0); clip-path: inset(46% 0 41% 0); }
+  72%  { opacity: 1;   -webkit-clip-path: inset(55% 0 27% 0); clip-path: inset(55% 0 27% 0); }
+  75%  { opacity: 0.6; -webkit-clip-path: inset(57% 0 27% 0); clip-path: inset(57% 0 27% 0); }
+  84%  { opacity: 1;   -webkit-clip-path: inset(68% 0 15% 0); clip-path: inset(68% 0 15% 0); }
+  87%  { opacity: 0.6; -webkit-clip-path: inset(70% 0 15% 0); clip-path: inset(70% 0 15% 0); }
+  98%  { opacity: 1;   -webkit-clip-path: inset(80% 0 0% 0);  clip-path: inset(80% 0 0% 0); }
+  100% { opacity: 0;   -webkit-clip-path: inset(85% 0 0% 0);  clip-path: inset(85% 0 0% 0); }
 }
 
 @keyframes engraveGlowProgress {
-  0%   { opacity: 0; clip-path: inset(0 0 100% 0); }
-  2%   { opacity: 1; clip-path: inset(0 0 95% 0); }
-  12%  { opacity: 1; clip-path: inset(0 0 86% 0); }
-  15%  { opacity: 0.6; clip-path: inset(0 0 86% 0); }
-  24%  { opacity: 1; clip-path: inset(10% 0 74% 0); }
-  27%  { opacity: 0.6; clip-path: inset(12% 0 74% 0); }
-  36%  { opacity: 1; clip-path: inset(22% 0 63% 0); }
-  39%  { opacity: 0.6; clip-path: inset(24% 0 63% 0); }
-  48%  { opacity: 1; clip-path: inset(33% 0 52% 0); }
-  51%  { opacity: 0.6; clip-path: inset(35% 0 52% 0); }
-  60%  { opacity: 1; clip-path: inset(44% 0 41% 0); }
-  63%  { opacity: 0.6; clip-path: inset(46% 0 41% 0); }
-  72%  { opacity: 1; clip-path: inset(55% 0 27% 0); }
-  75%  { opacity: 0.6; clip-path: inset(57% 0 27% 0); }
-  84%  { opacity: 1; clip-path: inset(68% 0 15% 0); }
-  87%  { opacity: 0.6; clip-path: inset(70% 0 15% 0); }
-  98%  { opacity: 1; clip-path: inset(80% 0 0% 0); }
-  100% { opacity: 0; clip-path: inset(85% 0 0% 0); }
+  0%   { opacity: 0;   -webkit-clip-path: inset(0 0 100% 0); clip-path: inset(0 0 100% 0); }
+  2%   { opacity: 1;   -webkit-clip-path: inset(0 0 95% 0);  clip-path: inset(0 0 95% 0); }
+  12%  { opacity: 1;   -webkit-clip-path: inset(0 0 86% 0);  clip-path: inset(0 0 86% 0); }
+  15%  { opacity: 0.6; -webkit-clip-path: inset(0 0 86% 0);  clip-path: inset(0 0 86% 0); }
+  24%  { opacity: 1;   -webkit-clip-path: inset(10% 0 74% 0); clip-path: inset(10% 0 74% 0); }
+  27%  { opacity: 0.6; -webkit-clip-path: inset(12% 0 74% 0); clip-path: inset(12% 0 74% 0); }
+  36%  { opacity: 1;   -webkit-clip-path: inset(22% 0 63% 0); clip-path: inset(22% 0 63% 0); }
+  39%  { opacity: 0.6; -webkit-clip-path: inset(24% 0 63% 0); clip-path: inset(24% 0 63% 0); }
+  48%  { opacity: 1;   -webkit-clip-path: inset(33% 0 52% 0); clip-path: inset(33% 0 52% 0); }
+  51%  { opacity: 0.6; -webkit-clip-path: inset(35% 0 52% 0); clip-path: inset(35% 0 52% 0); }
+  60%  { opacity: 1;   -webkit-clip-path: inset(44% 0 41% 0); clip-path: inset(44% 0 41% 0); }
+  63%  { opacity: 0.6; -webkit-clip-path: inset(46% 0 41% 0); clip-path: inset(46% 0 41% 0); }
+  72%  { opacity: 1;   -webkit-clip-path: inset(55% 0 27% 0); clip-path: inset(55% 0 27% 0); }
+  75%  { opacity: 0.6; -webkit-clip-path: inset(57% 0 27% 0); clip-path: inset(57% 0 27% 0); }
+  84%  { opacity: 1;   -webkit-clip-path: inset(68% 0 15% 0); clip-path: inset(68% 0 15% 0); }
+  87%  { opacity: 0.6; -webkit-clip-path: inset(70% 0 15% 0); clip-path: inset(70% 0 15% 0); }
+  98%  { opacity: 1;   -webkit-clip-path: inset(80% 0 0% 0);  clip-path: inset(80% 0 0% 0); }
+  100% { opacity: 0;   -webkit-clip-path: inset(85% 0 0% 0);  clip-path: inset(85% 0 0% 0); }
 }
 
 @keyframes engraveChiselMotion {
@@ -904,6 +978,7 @@ body:not(.intro-active) .intro-monogram-logo {
 @media (prefers-reduced-motion: reduce) {
   .evt-shloka-inner:not(.is-engraving):not(.is-engraved) .evt-shloka-img,
   .evt-shloka-inner .evt-shloka-img {
+    -webkit-clip-path: none !important;
     clip-path: none !important;
     animation: none !important;
   }

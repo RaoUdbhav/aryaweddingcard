@@ -140,7 +140,24 @@ const Sound = {
       });
     });
   },
-  init() {}
+  init() {
+    const unlock = () => {
+      try {
+        const c = this.ctx;
+        if (c && c.state === "suspended") {
+          c.resume();
+        }
+      } catch (e) {}
+      document.removeEventListener("touchstart", unlock);
+      document.removeEventListener("touchend", unlock);
+      document.removeEventListener("pointerdown", unlock);
+      document.removeEventListener("click", unlock);
+    };
+    document.addEventListener("touchstart", unlock, { passive: true });
+    document.addEventListener("touchend", unlock, { passive: true });
+    document.addEventListener("pointerdown", unlock, { passive: true });
+    document.addEventListener("click", unlock, { passive: true });
+  }
 };
 
 const introEl = document.getElementById("intro");
@@ -329,7 +346,7 @@ const farmanObserver = new IntersectionObserver(entries => {
     setTimeout(() => target.classList.add("is-unrolling"), 620);
     setTimeout(() => target.classList.add("is-open"), 1400);
   });
-}, { threshold: 0.12 });
+}, { threshold: 0.05, rootMargin: "60px 0px 60px 0px" });
 
 function renderEvents() {
   const container = document.getElementById("evtStops");
@@ -551,37 +568,83 @@ function startRopePhysics() {
 }
 
 if (ropeButton) {
+  let touchStartTime = 0;
+  let hasMoved = false;
+
+  const handleRopeTap = () => {
+    if (triggered) return;
+    Sound.bell();
+    ropeButton.classList.add("bell-ring-swing");
+    triggerIntro();
+  };
+
   ropeButton.addEventListener("pointerdown", e => {
     if (triggered) return;
     _unlockMusic();
-    e.preventDefault();
     isDragging = true;
+    hasMoved = false;
     dragStartY = e.clientY;
+    touchStartTime = Date.now();
     ropePeakRaw = 0;
     ropeButton.classList.add("rope-ready");
     ropeButton.classList.remove("rope-idle");
     ropeButton.classList.add("is-pulling");
     ropeTargetY = ropeVisualY;
     startRopePhysics();
-    ropeButton.setPointerCapture(e.pointerId);
+    try {
+      if (typeof ropeButton.setPointerCapture === "function") {
+        ropeButton.setPointerCapture(e.pointerId);
+      }
+    } catch (err) {}
   });
 
   ropeButton.addEventListener("pointermove", e => {
     if (!isDragging || triggered) return;
-    e.preventDefault();
     const rawDy = Math.max(0, e.clientY - dragStartY);
+    if (rawDy > 8) {
+      hasMoved = true;
+      if (e.cancelable) e.preventDefault();
+    }
     const dy = resist(rawDy);
     ropeTargetY = dy;
     ropePeakRaw = Math.max(ropePeakRaw, rawDy);
     startRopePhysics();
     if (rawDy >= PULL_THRESHOLD) {
       isDragging = false;
+      try {
+        if (typeof ropeButton.releasePointerCapture === "function" && ropeButton.hasPointerCapture(e.pointerId)) {
+          ropeButton.releasePointerCapture(e.pointerId);
+        }
+      } catch (err) {}
       triggerIntro();
     }
   });
 
   ropeButton.addEventListener("pointerup", e => {
-    if (ropeButton.hasPointerCapture(e.pointerId)) ropeButton.releasePointerCapture(e.pointerId);
+    try {
+      if (typeof ropeButton.releasePointerCapture === "function" && ropeButton.hasPointerCapture(e.pointerId)) {
+        ropeButton.releasePointerCapture(e.pointerId);
+      }
+    } catch (err) {}
+    isDragging = false;
+    if (!triggered) {
+      const dy = Math.abs(e.clientY - dragStartY);
+      const dt = Date.now() - touchStartTime;
+      if (!hasMoved || dy < 25 || dt < 450) {
+        handleRopeTap();
+      } else {
+        ropeTargetY = 0;
+        startRopePhysics();
+      }
+    }
+  });
+
+  ropeButton.addEventListener("pointercancel", e => {
+    try {
+      if (typeof ropeButton.releasePointerCapture === "function" && ropeButton.hasPointerCapture(e.pointerId)) {
+        ropeButton.releasePointerCapture(e.pointerId);
+      }
+    } catch (err) {}
     isDragging = false;
     if (!triggered) {
       ropeTargetY = 0;
@@ -589,22 +652,24 @@ if (ropeButton) {
     }
   });
 
-  ropeButton.addEventListener("click", () => {
-    Sound.bell();
-    ropeButton.classList.add("bell-ring-swing");
-    if (!triggered) triggerIntro();
+  ropeButton.addEventListener("click", e => {
+    if (e && typeof e.preventDefault === "function") e.preventDefault();
+    handleRopeTap();
   });
 }
 
 if (lotusButton) {
-  lotusButton.addEventListener("click", e => {
+  const handleLotusEnter = (e) => {
     if (e && typeof e.preventDefault === "function") e.preventDefault();
     if (lotusButton.classList.contains("is-animating")) return;
     lotusButton.classList.add("is-animating");
     Sound.lotus();
     lotusButton.classList.add("is-open");
     setTimeout(revealSite, 1000);
-  });
+  };
+
+  lotusButton.addEventListener("click", handleLotusEnter);
+  lotusButton.addEventListener("touchend", handleLotusEnter);
 }
 
 if (menuToggle && floatingMenu) {
@@ -696,10 +761,17 @@ function initScratchCard() {
     revealed = true;
 
     const rect = canvas.getBoundingClientRect();
-    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-    const posX = clientX ? (clientX - rect.left) : (rect.width / 2);
-    const posY = clientY ? (clientY - rect.top) : (rect.height / 2);
+    let clientX = e.clientX;
+    let clientY = e.clientY;
+    if (e.touches && e.touches.length > 0) {
+      clientX = e.touches[0].clientX;
+      clientY = e.touches[0].clientY;
+    } else if (e.changedTouches && e.changedTouches.length > 0) {
+      clientX = e.changedTouches[0].clientX;
+      clientY = e.changedTouches[0].clientY;
+    }
+    const posX = (clientX !== undefined && clientX !== null) ? (clientX - rect.left) : (rect.width / 2);
+    const posY = (clientY !== undefined && clientY !== null) ? (clientY - rect.top) : (rect.height / 2);
 
     ctx.save();
     ctx.globalCompositeOperation = 'destination-out';
@@ -722,6 +794,7 @@ function initScratchCard() {
 
   canvas.addEventListener('mousedown', triggerOneSwipeReveal);
   canvas.addEventListener('mousemove', (e) => { if (e.buttons === 1) triggerOneSwipeReveal(e); });
+  canvas.addEventListener('pointerdown', triggerOneSwipeReveal);
   canvas.addEventListener('touchstart', triggerOneSwipeReveal, { passive: true });
   canvas.addEventListener('touchmove', triggerOneSwipeReveal, { passive: true });
 
@@ -739,7 +812,7 @@ function initRSVPObserver() {
         rsvpSec.classList.add("is-in-view");
       }
     });
-  }, { threshold: 0.15 });
+  }, { threshold: 0.08, rootMargin: "40px 0px 40px 0px" });
 
   observer.observe(rsvpSec);
 }
@@ -789,7 +862,7 @@ function initShlokaEngraving() {
         }, 4600);
       }
     });
-  }, { threshold: 0.15, rootMargin: "0px 0px -30px 0px" });
+  }, { threshold: 0.05, rootMargin: "60px 0px 60px 0px" });
 
   observer.observe(evtHeader);
 }
