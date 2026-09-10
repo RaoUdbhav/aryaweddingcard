@@ -529,6 +529,35 @@ body:not(.intro-active) .intro-monogram-logo {
   margin-top: 2px !important;
 }
 
+/* Farman Directions Hyperlink (Underlined, distinct sapphire blue, with text shadow) */
+.farman-directions-link {
+  color: #134B70 !important;
+  text-decoration: underline !important;
+  text-underline-offset: 3px !important;
+  text-decoration-thickness: 1.2px !important;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.95), 0 0 8px rgba(19, 75, 112, 0.35) !important;
+  font-style: italic !important;
+  font-size: inherit !important;
+  font-family: inherit !important;
+  line-height: inherit !important;
+  display: inline-block !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  position: relative !important;
+  z-index: 5 !important;
+  transition: opacity 0.25s ease, color 0.25s ease !important;
+}
+
+.farman-directions-link:hover,
+.farman-directions-link:active {
+  color: #0E3550 !important;
+  opacity: 0.82 !important;
+}
+
+.farman-stop[data-event="baraat"] .farman-note {
+  opacity: 0.96 !important;
+}
+
 /* ============================================================
    GOLDEN BRASS BELL & CHAIN STYLING (SHINY GLOWING EFFECT)
    ============================================================ */
