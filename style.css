@@ -716,19 +716,21 @@ body:not(.intro-active) .intro-monogram-logo {
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
+  justify-content: center !important;
   gap: 12px !important;
   width: 100% !important;
-  max-width: 360px !important;
   margin: 0 auto !important;
 }
 
 .rsvp-contact-row {
   display: grid !important;
-  grid-template-columns: 1.15fr auto 1fr !important;
+  grid-template-columns: max-content auto max-content !important;
   align-items: center !important;
-  width: 100% !important;
-  max-width: 340px !important;
-  gap: 8px !important;
+  justify-content: center !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+  gap: clamp(10px, 3vw, 16px) !important;
+  margin: 0 auto !important;
 }
 
 .rsvp-contact-name {
@@ -754,16 +756,18 @@ body:not(.intro-active) .intro-monogram-logo {
 .rsvp-phone-link,
 a[href^="tel"],
 a[href*="tel:"] {
-  font-family: 'Cormorant Garamond', 'EB Garamond', 'Playfair Display', serif !important;
-  font-size: clamp(18px, 4.8vw, 24px) !important;
+  font-family: 'Cinzel', 'Playfair Display', serif !important;
+  font-size: clamp(17px, 4.5vw, 21px) !important;
   font-weight: 600 !important;
-  font-style: italic !important;
+  font-style: normal !important;
+  font-variant-numeric: lining-nums tabular-nums !important;
+  font-feature-settings: "lnum" 1, "tnum" 1 !important;
   color: #F5CE76 !important;
   -webkit-text-fill-color: #F5CE76 !important;
   text-decoration: none !important;
   border-bottom: none !important;
   text-align: left !important;
-  letter-spacing: 1.8px !important;
+  letter-spacing: 1.5px !important;
   white-space: nowrap !important;
   text-shadow: 0 0 16px rgba(245, 206, 118, 0.8), 0 0 28px rgba(216, 169, 87, 0.5), 0 2px 8px rgba(0, 0, 0, 0.95) !important;
 }
