@@ -33,7 +33,7 @@ function farmanNameFallbackClass(e) {
 }
 
 const EVENTS = [
-  { id: "baraat", icon: "assets/event/pn-evt-ico-ghurchari-horse-v01.png", name: "Baraat", date: "", time: "2:00 PM", venue: "From Residence", note: "The grand royal procession", map: "" },
+  { id: "baraat", icon: "assets/event/pn-evt-ico-ghurchari-horse-v01.png", name: "Departure of Baraat", date: "", time: "2:00 PM", venue: "From Residence", note: "The grand royal procession", map: "" },
   { id: "jaimala", icon: "assets/event/pn-evt-ico-jaimala-couple-arch-v01.png", name: "Jaimala", date: "", time: "4:30 PM", venue: "", note: "A floral promise of forever", map: "" },
   { id: "mangal-phere", icon: "assets/event/pn-evt-ico-mangal-phere-havankund-v01.png", name: "Mangal Phere", date: "", time: "5:30 PM", venue: "", note: "Flames witness, souls unite", map: "" },
   { id: "dinner", icon: "assets/event/pn-evt-ico-dinner-thali-v01.png", name: "Dinner", date: "", time: "7:30 PM Onwards", venue: "", note: "Bold spices, complex aromas and vibrant flavours", map: "" }
