@@ -283,6 +283,7 @@ body:not(.intro-active) .intro-monogram-logo {
   margin-bottom: 2px !important;
   text-transform: uppercase !important;
   font-weight: 500 !important;
+  line-height: 1.35 !important;
 }
 
 .inv-blessing p {
