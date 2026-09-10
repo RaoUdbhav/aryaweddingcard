@@ -512,6 +512,15 @@ body:not(.intro-active) .intro-monogram-logo {
   background: transparent !important;
 }
 
+/* Jaimala couple and arch motif scaled to match visual presence of Mangal Phere havan kund */
+.farman-stop[data-event="jaimala"] .farman-motif {
+  width: 200px !important;
+  height: 200px !important;
+  max-width: 200px !important;
+  max-height: 200px !important;
+  margin: -30px auto 4px !important;
+}
+
 /* Farman Date & Time Separate Line Layout */
 .farman-datetime {
   display: flex !important;
