@@ -772,10 +772,34 @@ function initCoupleTreeAnimation() {
   }, { passive: true });
 }
 
+/* Shloka Inscription Engraving Scroll Observer */
+function initShlokaEngraving() {
+  const shlokaInner = document.getElementById("evtShlokaInner");
+  const evtHeader = document.getElementById("evtHeader");
+  if (!shlokaInner || !evtHeader) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        shlokaInner.classList.add("is-engraving");
+        observer.unobserve(evtHeader);
+        setTimeout(() => {
+          shlokaInner.classList.remove("is-engraving");
+          shlokaInner.classList.add("is-engraved");
+        }, 4600);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: "0px 0px -30px 0px" });
+
+  observer.observe(evtHeader);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   hydrate();
   Sound.init();
   initScratchCard();
   initRSVPObserver();
   initCoupleTreeAnimation();
+  initShlokaEngraving();
 });
+
